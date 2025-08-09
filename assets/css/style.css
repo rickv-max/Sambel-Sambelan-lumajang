@@ -6,11 +6,11 @@
     background: transparent; 
 }
 ::-webkit-scrollbar-thumb { 
-    background: rgba(255, 255, 255, 0.2); 
+    background: rgba(255, 184, 56, 0.3); /* Warna scrollbar emas */
     border-radius: 10px; 
 }
 ::-webkit-scrollbar-thumb:hover { 
-    background: rgba(255, 255, 255, 0.3); 
+    background: rgba(255, 184, 56, 0.5); 
 }
 
 /* Menyembunyikan scrollbar untuk navigasi chips di mobile */
@@ -22,17 +22,19 @@
     scrollbar-width: none;  /* Firefox */
 }
 
-/* Styling untuk Navigasi Kategori "Chips" */
+/* Styling untuk Navigasi Kategori "Chips" - Tema Earthy Elegant */
 .category-chip {
     scroll-snap-align: start;
     transition: all 0.3s ease;
-    background-color: #333333; /* Warna abu-abu gelap untuk chip tidak aktif */
-    color: #AAAAAA; /* Warna teks abu-abu terang */
+    background-color: #2E2B2B; /* brand-slate */
+    color: #A3A3A3; /* Warna teks abu-abu terang */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .category-chip.active {
-    background-color: #CF0A0A; /* brand-red */
-    color: #EEEEEE; /* brand-gray */
+    background-color: #E0412B; /* brand-red */
+    color: #FFFFFF; /* Putih */
     font-weight: 600;
+    box-shadow: 0 0 15px rgba(224, 65, 43, 0.4);
 }
 
 /* Animasi Staggered untuk item menu saat masuk viewport */
@@ -48,7 +50,7 @@
 }
 .menu-item {
     opacity: 0;
-    background-color: #CF0A0A; /* brand-red */
+    background-color: #2E2B2B; /* brand-slate */
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -76,6 +78,15 @@
     position: sticky;
     top: 115px; /* Sesuaikan jika tinggi header berubah */
     z-index: 30;
-    background-color: #000000; /* brand-black */
+    background-color: #252323; /* brand-charcoal */
     padding-bottom: 0.5rem;
+}
+
+/* Styling Tombol Order dengan Gradasi */
+.order-button-animated {
+    background-color: #E0412B; /* brand-red */
+}
+.order-button-animated:not(:disabled):hover {
+    background-color: #C13522; /* Merah lebih gelap saat hover */
+    transform: scale(1.02);
 }
