@@ -6,16 +6,13 @@
     <title>Pesan Online - Sambel Sambelan Lumajang</title>
     <meta name="description" content="Rasakan pengalaman memesan kuliner premium dari Sambel Sambelan Lumajang. Cepat, modern, dan intuitif.">
     
-    <!-- Tailwind CSS & Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Konfigurasi Tailwind Langsung untuk TEMA TERANG -->
     <script>
         tailwind.config = {
             theme: {
@@ -25,11 +22,11 @@
                         'inter': ['Inter', 'sans-serif'] 
                     },
                     colors: { 
-                        'brand-red': '#EF4444', 
-                        'brand-dark': '#1F2937', // Teks utama (Hitam Arang)
-                        'brand-gray': '#6B7280', // Teks sekunder
-                        'brand-surface': '#FFFFFF', // Latar elemen (Putih)
-                        'brand-bg': '#F9FAFB'      // Latar Body (Abu-abu sangat terang)
+                        'brand-red': '#DC2626',      // Merah lebih dalam
+                        'brand-orange': '#F97316',   // Oranye api
+                        'brand-gold': '#FBBF24',     // Emas untuk harga
+                        'brand-dark': '#1c1a19',     // Coklat sangat gelap
+                        'brand-light-dark': '#2a2726'
                     }
                 }
             }
@@ -37,59 +34,58 @@
     </script>
 </head>
 
-<body class="bg-brand-bg text-brand-dark font-inter">
+<body class="font-inter text-white">
 
     <!-- Header & Navigasi Kategori Sticky -->
-    <header class="sticky top-0 z-40 bg-gradient-to-b from-white to-white/80 backdrop-blur-lg border-b border-gray-200/60">
+    <header class="sticky top-0 z-40 bg-brand-dark/80 backdrop-blur-lg border-b border-white/10">
         <div class="container mx-auto px-4 pt-4">
-            <h1 class="font-poppins font-bold text-2xl text-brand-dark">Sambelan<span class="text-brand-red">.</span></h1>
+            <h1 class="font-poppins font-bold text-2xl">Sambelan<span class="text-brand-red">.</span></h1>
         </div>
         <nav id="category-nav" class="category-chips-container mt-4 px-4">
-            <!-- Kategori Chips akan dimuat di sini oleh JavaScript -->
+            <!-- Kategori Chips dimuat oleh JS -->
         </nav>
     </header>
 
     <!-- Konten Menu Utama -->
     <main id="menu-content" class="container mx-auto px-4 mt-1 pb-40">
-        <!-- Seksi-seksi Menu akan dimuat di sini oleh JavaScript -->
+        <!-- Seksi-seksi Menu dimuat oleh JS -->
     </main>
 
     <!-- Floating Cart Bar -->
     <div id="floating-cart" class="fixed bottom-0 left-0 right-0 p-4 transform translate-y-full transition-transform duration-300">
         <div class="container mx-auto">
-            <button id="open-cart-button" class="w-full bg-white/70 backdrop-blur-xl border border-gray-200 rounded-xl shadow-2xl p-4 flex justify-between items-center transition-transform duration-300 hover:scale-[1.02]">
+            <button id="open-cart-button" class="w-full bg-brand-light-dark/60 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-4 flex justify-between items-center transition-transform duration-300 hover:scale-[1.02]">
                 <div class="flex items-center gap-3">
                     <div id="item-count-badge" class="bg-brand-red text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
-                    <span class="font-semibold text-brand-dark">Lihat Pesanan</span>
+                    <span class="font-semibold">Lihat Pesanan</span>
                 </div>
-                <span id="total-price-bar" class="font-poppins font-bold text-lg text-brand-dark">Rp 0</span>
+                <span id="total-price-bar" class="font-poppins font-bold text-lg">Rp 0</span>
             </button>
         </div>
     </div>
     
-    <!-- Modal Rincian Pesanan (Bottom Sheet) -->
-    <div id="order-modal" class="fixed inset-0 bg-black/50 flex flex-col justify-end z-50 invisible">
-        <div id="modal-content" class="bg-white w-full rounded-t-2xl p-6 transform translate-y-full transition-transform duration-300 ease-in-out">
+    <!-- Modal Rincian Pesanan (Smoky Glass) -->
+    <div id="order-modal" class="fixed inset-0 bg-black/60 flex flex-col justify-end z-50 invisible">
+        <div id="modal-content" class="bg-brand-light-dark/80 backdrop-blur-2xl border-t border-white/10 w-full rounded-t-2xl p-6 transform translate-y-full transition-transform duration-300 ease-in-out">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="font-poppins font-bold text-xl text-brand-dark">Rincian Pesanan</h3>
-                <button id="close-modal-button" class="text-gray-400 hover:text-brand-dark text-3xl leading-none">&times;</button>
+                <h3 class="font-poppins font-bold text-xl">Rincian Pesanan</h3>
+                <button id="close-modal-button" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
             </div>
             <div id="modal-cart-items" class="space-y-4 max-h-[40vh] overflow-y-auto pr-2">
-                <!-- Rincian item di modal akan dimuat di sini -->
+                <!-- Rincian item di modal dimuat oleh JS -->
             </div>
-            <div class="mt-6 pt-6 border-t border-gray-200">
+            <div class="mt-6 pt-6 border-t border-white/10">
                 <div class="flex justify-between items-center mb-4">
-                    <span class="font-semibold text-brand-gray">Total Pembayaran</span>
-                    <span id="modal-total-price" class="font-poppins font-bold text-2xl text-brand-dark">Rp 0</span>
+                    <span class="font-semibold text-gray-300">Total Pembayaran</span>
+                    <span id="modal-total-price" class="font-poppins font-bold text-2xl">Rp 0</span>
                 </div>
-                <button id="order-button" class="w-full mt-2 bg-brand-red text-white font-bold py-4 rounded-lg hover:bg-red-600 transition-transform duration-200 hover:scale-[1.02] disabled:bg-gray-500 disabled:opacity-70">
+                <button id="order-button" class="order-button-animated w-full mt-2 text-white font-bold py-4 rounded-lg transition-all duration-300 disabled:bg-gray-600 disabled:opacity-50">
                     Pesan via WhatsApp
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Script Utama -->
     <script src="assets/js/script.js"></script>
 </body>
 </html>
