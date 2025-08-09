@@ -1,120 +1,77 @@
-/* Styling scrollbar minimalis & modern untuk tema gelap */
-::-webkit-scrollbar { 
-    width: 6px; 
-}
-::-webkit-scrollbar-track { 
-    background: transparent; 
-}
-::-webkit-scrollbar-thumb { 
-    background: rgba(255, 184, 56, 0.3); /* Warna scrollbar emas */
-    border-radius: 10px; 
-}
-::-webkit-scrollbar-thumb:hover { 
-    background: rgba(255, 184, 56, 0.5); 
-}
+/* Styling scrollbar minimalis & modern untuk tema terang */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F3F4F6; }
+::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
 
 /* Menyembunyikan scrollbar untuk navigasi chips di mobile */
-.category-chips-container::-webkit-scrollbar { 
-    display: none; 
-}
-.category-chips-container { 
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
+.category-chips-container::-webkit-scrollbar { display: none; }
+.category-chips-container { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Styling untuk Navigasi Kategori "Chips" - Tema Earthy Elegant */
+/* Styling "Chips" - Tema Moka */
 .category-chip {
     scroll-snap-align: start;
     transition: all 0.3s ease;
-    background-color: #2E2B2B; /* brand-slate */
-    color: #A3A3A3; /* Warna teks abu-abu terang */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #E4E8EC; /* moka-light-gray */
+    color: #30373D; /* moka-dark */
 }
 .category-chip.active {
-    background-color: #E0412B; /* brand-red */
-    color: #FFFFFF; /* Putih */
+    background-color: #0099D6; /* moka-blue */
+    color: white;
     font-weight: 600;
-    box-shadow: 0 0 15px rgba(224, 65, 43, 0.4);
 }
 
-/* Animasi Staggered untuk item menu saat masuk viewport */
+/* Animasi Staggered */
 @keyframes fadeInSlideUp {
-    from { 
-        opacity: 0; 
-        transform: translateY(15px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 .menu-item {
     opacity: 0;
-    background-color: #2E2B2B; /* brand-slate */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: white;
+    border: 1px solid #E4E8EC; /* moka-light-gray */
 }
 
-/* Animasi untuk Modal/Bottom Sheet */
-#order-modal.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-#order-modal.visible #modal-content {
-    transform: translateY(0);
-}
+/* Animasi Modal & Floating Cart */
+#order-modal.visible { opacity: 1; pointer-events: auto; }
+#order-modal.visible #modal-content { transform: translateY(0); }
+#floating-cart.visible { transform: translateY(0); }
 
-/* Animasi untuk Floating Cart Bar */
-#floating-cart.visible {
-    transform: translateY(0);
-}
+/* Mencegah Double-Tap Zoom */
+.quantity-selector button { touch-action: manipulation; }
 
-/* Mencegah Double-Tap Zoom pada tombol kuantitas */
-.quantity-selector button {
-    touch-action: manipulation;
-}
-
-/* Styling untuk Section Header yang Sticky */
+/* Styling Section Header Sticky */
 .section-header {
+    position: sticky;
+    top: 155px; /* Disesuaikan untuk header + search bar */
     z-index: 30;
-    background-color: #252323; /* brand-charcoal */
+    background-color: rgba(247, 249, 252, 0.85); /* moka-bg */
+    backdrop-filter: blur(8px);
+    padding-bottom: 0.5rem;
 }
 
-/* Styling Tombol Order dengan Gradasi */
-.order-button-animated {
-    background-color: #E0412B; /* brand-red */
-}
-.order-button-animated:not(:disabled):hover {
-    background-color: #C13522; /* Merah lebih gelap saat hover */
-    transform: scale(1.02);
-}
-/* === GAYA BARU UNTUK FITUR PENCARIAN === */
+/* Gaya untuk Fitur Pencarian (Tema Moka) */
 .search-input {
-    background-color: #2E2B2B; /* brand-slate */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #F3EFEA; /* brand-cream */
+    background-color: white;
+    border: 1px solid #E4E8EC; /* moka-light-gray */
+    color: #30373D; /* moka-dark */
     transition: all 0.2s ease-in-out;
-    padding-top: 0.6rem !important;    /* Sekitar 10px */
-    padding-bottom: 0.6rem !important; /* Sekitar 10px */
 }
 .search-input::placeholder {
-    color: #71717A; /* gray-500 */
+    color: #929DA6; /* moka-gray */
 }
 .search-input:focus {
     outline: none;
-    border-color: #FFB838; /* brand-gold */
-    box-shadow: 0 0 0 2px rgba(255, 184, 56, 0.3);
+    border-color: #0099D6; /* moka-blue */
+    box-shadow: 0 0 0 2px rgba(0, 153, 214, 0.2);
 }
-
-/* Styling untuk hasil pencarian */
-#search-results .search-result-item {
-    background-color: #2E2B2B; /* brand-slate */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-#search-results .category-badge {
-    background-color: #E0412B; /* brand-red */
+.category-badge {
+    background-color: #0099D6; /* moka-blue */
     color: white;
     font-size: 0.7rem;
     padding: 2px 8px;
     border-radius: 9999px;
     font-weight: 600;
+    display: inline-block;
+    margin-left: 8px;
 }
