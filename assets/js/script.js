@@ -27,22 +27,22 @@ document.addEventListener('DOMContentLoaded', function() {
         "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 }, { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { name: "Cappucino", price: 16000 } ] }
     };
     let allMenuItems = [];
-    let cart = {};
+    let cart = {}; // Objek untuk menyimpan kuantitas pesanan: { "Nama Item": jumlah }
 
     const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
-    
+
     function flattenMenuItems() {
         allMenuItems = Object.entries(menuData).flatMap(([category, data]) => 
             data.items.map(item => ({ ...item, category }))
         );
     }
-    
+
     function renderMenuItem(item, isSearchResult = false) {
-        const categoryBadge = isSearchResult ? `<span class="category-badge">${item.category}</span>` : '';
+        const categoryBadgeHTML = isSearchResult ? `<span class="category-badge">${item.category}</span>` : '';
         return `
-            <div class="menu-item p-4 rounded-xl flex items-center justify-between" style="animation-delay: ${Math.random() * 200}ms;">
+            <div class="menu-item p-4 rounded-xl flex items-center justify-between">
                 <div class="mr-4">
-                    <p class="font-semibold text-brand-cream">${item.name} ${categoryBadge}</p>
+                    <p class="font-semibold text-brand-cream">${item.name} ${categoryBadgeHTML}</p>
                     <p class="text-sm text-brand-gold font-bold">${formatRupiah(item.price)}</p>
                 </div>
                 <div class="quantity-selector flex items-center bg-brand-charcoal rounded-full">
@@ -56,11 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderMenuAndNav() {
-        // ... (Fungsi renderMenuAndNav lengkap di sini)
-    }
-
-    // ... (sisa fungsi akan saya gabungkan di bawah untuk memastikan tidak terpotong)
-    const renderMenuAndNavComplete = () => {
         menuContent.innerHTML = '';
         categoryNav.innerHTML = '';
 
@@ -71,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         Object.keys(menuData).forEach((category, index) => {
             const categoryId = category.toLowerCase().replace(/ & /g, ' dan ').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             const data = menuData[category];
+
             const chip = document.createElement('a');
             chip.href = `#${categoryId}`;
             chip.textContent = category;
@@ -81,7 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const section = document.createElement('section');
             section.id = categoryId;
             section.className = 'menu-section pt-4';
-            const itemsHTML = data.items.map(item => renderMenuItem(item)).join('');
+            
+            const itemsHTML = data.items.map(item => renderMenuItem(item, false)).join('');
             
             section.innerHTML = `
                 <div class="section-header py-4 border-b border-white/10">
@@ -92,11 +89,11 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             menuContent.appendChild(section);
         });
-        initObservers(); // Re-initialize observers after rendering
+        initObservers();
     }
-    
+
     function renderSearchResults(results) {
-        searchResultsContainer.innerHTML = `<div class="grid grid-cols-1 lg:grid-cols-2 gap-3">${results.map(item => renderMenuItem(item, true)).join('')}</div>`;
+        searchResultsContainer.innerHTML = `<div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${results.map(item => renderMenuItem(item, true)).join('')}</div>`;
     }
 
     function updateOrder() {
@@ -138,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return selectedItems;
     }
-    
+
     function handleSearch(event) {
         const query = event.target.value.toLowerCase().trim();
 
@@ -147,8 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
             categoryNav.classList.remove('hidden');
             searchResultsContainer.classList.add('hidden');
             noResultsMessage.classList.add('hidden');
-            // Re-render menu utama untuk menyinkronkan kuantitas
-            renderMenuAndNavComplete();
             return;
         }
 
@@ -212,6 +207,21 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
     }
 
+    function handleQuantityChange(e) {
+        const quantityBtn = e.target.closest('.quantity-plus, .quantity-minus');
+        if (quantityBtn) {
+            const input = quantityBtn.parentElement.querySelector('.quantity-input');
+            const itemName = input.dataset.name;
+            let value = cart[itemName] || 0;
+            value = quantityBtn.classList.contains('quantity-plus') ? value + 1 : Math.max(0, value - 1);
+            cart[itemName] = value;
+            input.value = value;
+            if(navigator.vibrate) navigator.vibrate(50);
+            updateOrder();
+        }
+    }
+    
+    // Event listeners
     document.addEventListener('click', (e) => {
         const chip = e.target.closest('.category-chip');
         if (chip) {
@@ -225,30 +235,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('#close-modal-button') || e.target === orderModal) toggleModal(false);
         if (e.target === orderButton) generateWhatsAppLink();
     });
-    
-    // Pisahkan event listener untuk kuantitas agar lebih mudah di-debug
-    document.addEventListener('click', (e) => {
-        const quantityBtn = e.target.closest('.quantity-plus, .quantity-minus');
-        if (!quantityBtn) return;
 
-        const input = quantityBtn.parentElement.querySelector('.quantity-input');
-        const itemName = input.dataset.name;
-        let value = cart[itemName] || 0;
-
-        value = quantityBtn.classList.contains('quantity-plus') ? value + 1 : Math.max(0, value - 1);
-        cart[itemName] = value;
-        input.value = value;
-        
-        if(navigator.vibrate) navigator.vibrate(50);
-        updateOrder();
-    });
-
+    document.addEventListener('click', handleQuantityChange);
     document.addEventListener('input', (e) => {
         if (e.target.classList.contains('quantity-input')) {
             let value = parseInt(e.target.value);
             if (isNaN(value) || value < 0) value = 0;
             const itemName = e.target.dataset.name;
             cart[itemName] = value;
+            e.target.value = value; // Update input field to sanitized value
             updateOrder();
         }
     });
@@ -257,6 +252,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Inisialisasi Aplikasi ---
     flattenMenuItems();
-    renderMenuAndNavComplete();
+    renderMenuAndNav();
     updateOrder();
 });
