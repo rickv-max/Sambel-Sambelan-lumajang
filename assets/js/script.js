@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const orderButton = document.getElementById('order-button');
     const whatsappNumber = '6281336777726';
 
-    // --- Database & Variabel Global ---
     const menuData = {
         "Menu Komplit": { note: "Sudah Include Nasi Putih", items: [ { name: "Nasi Ayam Kremes (Paha Potong)", price: 20000 }, { name: "Nasi Ayam Kremes Kampung (Paha/Dada)", price: 30000 }, { name: "Nasi Tempong Ayam Kampung (Paha/Dada)", price: 25000 }, { name: "Nasi Tempong Ayam Potong (Paha)", price: 25000 }, { name: "Nasi Tempong Polos", price: 12000 }, { name: "Nasi Garang Asem (Paha/Dada)", price: 30000 }, { name: "Nasi Ikan Pe Goreng", price: 16000 }, { name: "Nasi Ikan Pe Kuah", price: 18000 }, { name: "Nasi Ayam Bakar Kampung (Paha/Dada)", price: 35000 }, ] },
         "Lauk": { note: "Belum Include Nasi Putih", items: [ { name: "1 Ekor Ayam Ingkung Kampung", price: 85000 }, { name: "Ayam Goreng Kremes (Paha Potong)", price: 15000 }, { name: "Ayam Goreng Kremes Kampung (Paha/Dada)", price: 25000 }, { name: "Bebek Goreng (Paha/Dada)", price: 30000 }, { name: "Ayam Bakar Kampung (Paha/Dada)", price: 30000 }, { name: "Burung Dara", price: 36000 }, { name: "Usus Ayam", price: 10000 }, { name: "Kulit Ayam", price: 12000 }, { name: "Ceker Ayam", price: 15000 }, { name: "Kepala Ayam isi 4", price: 9000 }, { name: "Kepala Bebek isi 3", price: 15000 }, { name: "Babat", price: 16000 }, { name: "Kikil", price: 15000 }, { name: "Nila", price: 18000 }, { name: "Lele isi 2", price: 15000 }, { name: "Teri", price: 7000 }, { name: "Ikan Asin", price: 10000 }, { name: "Tahu Tempe", price: 6000 }, { name: "Sop Buntut", price: 45000 }, { name: "Iga Bakar", price: 45000 }, { name: "Cumi Goreng", price: 20000 }, { name: "Udang Goreng", price: 17000 }, { name: "Nasi Putih", price: 5000 }, ] },
@@ -43,14 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return `
             <div class="menu-item p-4 rounded-xl flex items-center justify-between">
                 <div class="mr-4">
-                    <p class="font-semibold text-brand-cream">${item.name} ${categoryBadgeHTML}</p>
-                    <p class="text-sm text-brand-gold font-bold">${formatRupiah(item.price)}</p>
+                    <p class="font-semibold text-moka-dark">${item.name} ${categoryBadgeHTML}</p>
+                    <p class="text-sm text-moka-blue font-bold">${formatRupiah(item.price)}</p>
                 </div>
-                <div class="quantity-selector flex items-center bg-brand-charcoal rounded-full">
-                    <button class="quantity-minus text-brand-red w-10 h-10 text-2xl font-bold">-</button>
-                    <input type="number" class="quantity-input w-12 h-10 text-center font-bold text-brand-cream bg-transparent focus:outline-none" 
+                <div class="quantity-selector flex items-center bg-moka-bg rounded-full border border-moka-light-gray">
+                    <button class="quantity-minus text-moka-blue w-10 h-10 text-2xl font-bold">-</button>
+                    <input type="number" class="quantity-input w-12 h-10 text-center font-bold text-moka-dark bg-transparent focus:outline-none" 
                            value="${cart[item.name] || 0}" min="0" data-name="${item.name}" data-price="${item.price}">
-                    <button class="quantity-plus text-brand-red w-10 h-10 text-2xl font-bold">+</button>
+                    <button class="quantity-plus text-moka-blue w-10 h-10 text-2xl font-bold">+</button>
                 </div>
             </div>
         `;
@@ -67,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
         Object.keys(menuData).forEach((category, index) => {
             const categoryId = category.toLowerCase().replace(/ & /g, ' dan ').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             const data = menuData[category];
-
             const chip = document.createElement('a');
             chip.href = `#${categoryId}`;
             chip.textContent = category;
@@ -78,13 +76,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const section = document.createElement('section');
             section.id = categoryId;
             section.className = 'menu-section pt-4';
-            
             const itemsHTML = data.items.map(item => renderMenuItem(item, false)).join('');
             
             section.innerHTML = `
-                <div class="section-header py-4 border-b border-white/10">
-                    <h2 class="font-bold text-2xl text-white">${category}</h2>
-                    ${data.note ? `<p class="text-gray-400 text-sm mt-1">${data.note}</p>` : ''}
+                <div class="section-header py-4">
+                    <h2 class="font-bold text-2xl text-moka-dark">${category}</h2>
+                    ${data.note ? `<p class="text-moka-gray text-sm mt-1">${data.note}</p>` : ''}
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${itemsHTML}</div>
             `;
@@ -95,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderSearchResults(results) {
         searchResultsContainer.innerHTML = `<div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${results.map(item => renderMenuItem(item, true)).join('')}</div>`;
-        // PERBAIKAN PENTING: Panggil observer untuk hasil pencarian
         initItemObservers(searchResultsContainer);
     }
 
@@ -126,14 +122,14 @@ document.addEventListener('DOMContentLoaded', function() {
             modalCartItems.innerHTML = selectedItems.map(item => `
                 <div class="flex justify-between items-center text-sm">
                     <div>
-                        <p class="font-semibold text-brand-cream">${item.name}</p>
-                        <p class="text-gray-400">${item.quantity} &times; ${formatRupiah(item.price)}</p>
+                        <p class="font-semibold text-moka-dark">${item.name}</p>
+                        <p class="text-moka-gray">${item.quantity} &times; ${formatRupiah(item.price)}</p>
                     </div>
-                    <p class="font-semibold text-brand-cream">${formatRupiah(item.quantity * item.price)}</p>
+                    <p class="font-semibold text-moka-dark">${formatRupiah(item.quantity * item.price)}</p>
                 </div>
             `).join('');
         } else {
-            modalCartItems.innerHTML = `<p class="text-gray-400 text-center py-4">Keranjang Anda kosong.</p>`;
+            modalCartItems.innerHTML = `<p class="text-moka-gray text-center py-4">Keranjang Anda kosong.</p>`;
             toggleModal(false);
         }
         return selectedItems;
@@ -187,8 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { rootMargin: "-30% 0px -70% 0px" });
-    
-    // PERBAIKAN: Pisahkan item observer agar bisa dipanggil ulang
+
     function initItemObservers(container) {
         const items = container.querySelectorAll('.menu-item');
         items.forEach(item => itemObserver.observe(item));
@@ -216,8 +211,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
     }
     
+    // Event listener utama
     document.addEventListener('click', (e) => {
-        // Klik pada chip navigasi
         const chip = e.target.closest('.category-chip');
         if (chip) {
             e.preventDefault();
@@ -227,10 +222,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Klik pada tombol kuantitas
         const quantityBtn = e.target.closest('.quantity-plus, .quantity-minus');
         if (quantityBtn) {
-            const input = quantityBtn.parentElement.querySelector('.quantity-input');
+            const input = quantityBtn.parentElement.querySelector('input');
             const itemName = input.dataset.name;
             let value = cart[itemName] || 0;
             value = quantityBtn.classList.contains('quantity-plus') ? value + 1 : Math.max(0, value - 1);
@@ -240,17 +234,14 @@ document.addEventListener('DOMContentLoaded', function() {
             updateOrder();
         }
 
-        // Klik untuk membuka modal
         if (e.target.closest('#open-cart-button')) {
             toggleModal(true);
         }
 
-        // Klik untuk menutup modal
         if (e.target.closest('#close-modal-button') || e.target === orderModal) {
             toggleModal(false);
         }
 
-        // Klik tombol order final
         if (e.target === orderButton) {
             generateWhatsAppLink();
         }
