@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 }, { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { name: "Cappucino", price: 16000 } ] }
     };
     let allMenuItems = [];
-    let cart = {};
+    let cart = {}; // Objek untuk menyimpan kuantitas pesanan: { "Nama Item": jumlah }
 
     const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
 
@@ -207,8 +207,20 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
     }
     
-    // Event listener untuk kuantitas yang bisa menangani elemen dinamis
+    // Event listener utama yang menangani SEMUA klik
     document.addEventListener('click', (e) => {
+        // Klik pada chip navigasi
+        const chip = e.target.closest('.category-chip');
+        if (chip) {
+            e.preventDefault();
+            const targetSection = document.querySelector(chip.getAttribute('href'));
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            return; // Hentikan eksekusi agar tidak bentrok
+        }
+
+        // Klik pada tombol kuantitas
         const quantityBtn = e.target.closest('.quantity-plus, .quantity-minus');
         if (quantityBtn) {
             const input = quantityBtn.parentElement.querySelector('.quantity-input');
@@ -219,22 +231,25 @@ document.addEventListener('DOMContentLoaded', function() {
             input.value = value;
             if (navigator.vibrate) navigator.vibrate(50);
             updateOrder();
+            return;
         }
-    });
 
-    // Event listener utama
-    document.addEventListener('click', (e) => {
-        const chip = e.target.closest('.category-chip');
-        if (chip) {
-            e.preventDefault();
-            const targetSection = document.querySelector(chip.getAttribute('href'));
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
+        // Klik untuk membuka modal
+        if (e.target.closest('#open-cart-button')) {
+            toggleModal(true);
+            return;
         }
-        if (e.target.closest('#open-cart-button')) toggleModal(true);
-        if (e.target.closest('#close-modal-button') || e.target === orderModal) toggleModal(false);
-        if (e.target === orderButton) generateWhatsAppLink();
+
+        // Klik untuk menutup modal
+        if (e.target.closest('#close-modal-button') || e.target === orderModal) {
+            toggleModal(false);
+            return;
+        }
+
+        // Klik tombol order final
+        if (e.target === orderButton) {
+            generateWhatsAppLink();
+        }
     });
 
     document.addEventListener('input', (e) => {
