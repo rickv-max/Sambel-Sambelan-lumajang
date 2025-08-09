@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `).join('');
             section.innerHTML = `
-                <h2 class="font-poppins font-bold text-3xl text-white mb-6">${category}</h2>
+                <h2 class="font-poppins font-bold text-3xl text-white">${category}</h2>
+                ${data.note ? `<p class="text-gray-400 mt-1 mb-6">${data.note}</p>` : '<div class="mb-6"></div>'}
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">${itemsHTML}</div>
             `;
             menuContent.appendChild(section);
