@@ -13,6 +13,7 @@
     
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- Konfigurasi Tailwind Langsung untuk TEMA "SUBTLE GRIT" -->
     <script>
         tailwind.config = {
             theme: {
@@ -36,6 +37,7 @@
 
 <body class="bg-brand-dark text-white font-inter">
 
+    <!-- Header & Navigasi Kategori Sticky -->
     <header class="sticky top-0 z-40 bg-brand-dark/80 backdrop-blur-lg border-b border-white/10">
         <div class="container mx-auto px-4 pt-4">
             <h1 class="font-poppins font-bold text-2xl">Sambelan<span class="text-brand-red">.</span></h1>
@@ -43,8 +45,10 @@
         <nav id="category-nav" class="category-chips-container mt-4 px-4"></nav>
     </header>
 
+    <!-- Konten Menu Utama -->
     <main id="menu-content" class="container mx-auto px-4 mt-1 pb-40"></main>
 
+    <!-- Floating Cart Bar -->
     <div id="floating-cart" class="fixed bottom-0 left-0 right-0 p-4 transform translate-y-full transition-transform duration-300">
         <div class="container mx-auto">
             <button id="open-cart-button" class="w-full bg-brand-light-dark/60 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-4 flex justify-between items-center transition-transform duration-300 hover:scale-[1.02]">
@@ -57,7 +61,7 @@
         </div>
     </div>
     
-    <!-- Modal Rincian Pesanan (Smoky Glass) - KELAS INVISIBLE DIHAPUS DARI SINI -->
+    <!-- Modal Rincian Pesanan (Smoky Glass) -->
     <div id="order-modal" class="fixed inset-0 bg-black/60 flex flex-col justify-end z-50">
         <div id="modal-content" class="bg-brand-light-dark/80 backdrop-blur-2xl border-t border-white/10 w-full rounded-t-2xl p-6 transform translate-y-full transition-transform duration-300 ease-in-out">
             <div class="flex justify-between items-center mb-6">
