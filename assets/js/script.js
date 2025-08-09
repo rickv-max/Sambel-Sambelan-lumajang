@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Sayur": { note: null, items: [ { name: "Tumis Kangkung Polos", price: 10000 }, { name: "Tumis Tauge Polos", price: 10000 }, { name: "Tumis Tauge Teri Medan", price: 15000 }, { name: "Sayur Asem", price: 9000 }, ] },
         "Sambelan": { note: "Belum Include Nasi Putih", items: [ { name: "Sambal Terasi Segar", price: 5000 }, { name: "Sambal Terasi Matang", price: 4500 }, { name: "Sambal Tempong", price: 4500 }, { name: "Sambal Kecap", price: 4000 }, { name: "Sambal Thailand", price: 6000 }, { name: "Sambal Dabu - Dabu", price: 6000 }, { name: "Sambal Tahu Tempe", price: 8000 }, { name: "Sambal Bakar", price: 6000 }, { name: "Sambal Bakar Kikil", price: 14000 }, { name: "Sambal Bakar Teri", price: 10000 }, { name: "Sambal Bakar Udang", price: 17000 }, { name: "Sambal Bakar Cumi", price: 17000 }, { name: "Sambal Bakar Babat", price: 16000 }, ] },
         "Chinese & Seafood": { note: null, items: [ { name: "Nasi Hainan Ayam Panggang", price: 32000 }, { name: "Nasi Hainan Ayam Rebus", price: 30000 }, { name: "Ayam Panggang 1 Ekor", price: 110000 }, { name: "Ayam Panggang 1/2 Ekor", price: 65000 }, { name: "Ayam Rebus 1 Ekor", price: 95000 }, { name: "Ayam Rebus 1/2 Ekor", price: 45000 }, { name: "Gurami Jimbaran Besar", price: 75000 }, { name: "Gurami Jimbaran Sedang", price: 60000 }, { name: "Gurami Goreng Dabu - Dabu Besar", price: 75000 }, { name: "Gurami Goreng Dabu - Dabu Sedang", price: 60000 }, { name: "Udang Bakar Jimbaran", price: 40000 }, { name: "Kerang Bakar Jimbaran", price: 40000 }, ] },
-        "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 }, { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { name: "Cappucino", price: 16000 } ] },
+        "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 }, { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { name: "Cappucino", price: 16000 } ] }
     };
 
     const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
@@ -49,23 +49,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const itemsHTML = data.items.map(item => `
                 <div class="menu-item p-4 rounded-xl flex items-center justify-between">
                     <div class="mr-4">
-                        <p class="font-semibold text-brand-gray">${item.name}</p>
-                        <p class="text-sm text-brand-accent font-bold">${formatRupiah(item.price)}</p>
+                        <p class="font-semibold text-brand-cream">${item.name}</p>
+                        <p class="text-sm text-brand-gold font-bold">${formatRupiah(item.price)}</p>
                     </div>
-                    <div class="quantity-selector flex items-center bg-black rounded-full">
+                    <div class="quantity-selector flex items-center bg-brand-charcoal rounded-full">
                         <button class="quantity-minus text-brand-red w-10 h-10 text-2xl font-bold">-</button>
-                        <input type="number" class="quantity-input w-12 h-10 text-center font-bold text-brand-gray bg-transparent focus:outline-none" value="0" min="0" data-name="${item.name}" data-price="${item.price}">
+                        <input type="number" class="quantity-input w-12 h-10 text-center font-bold text-brand-cream bg-transparent focus:outline-none" value="0" min="0" data-name="${item.name}" data-price="${item.price}">
                         <button class="quantity-plus text-brand-red w-10 h-10 text-2xl font-bold">+</button>
                     </div>
                 </div>
             `).join('');
             
             section.innerHTML = `
-                <div class="section-header py-4">
+                <div class="section-header py-4 border-b border-white/10">
                     <h2 class="font-bold text-2xl text-white">${category}</h2>
                     ${data.note ? `<p class="text-gray-400 text-sm mt-1">${data.note}</p>` : ''}
                 </div>
-                <div class="grid grid-cols-1 gap-3 pt-4">${itemsHTML}</div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${itemsHTML}</div>
             `;
             menuContent.appendChild(section);
         });
@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', function() {
             modalCartItems.innerHTML = selectedItems.map(item => `
                 <div class="flex justify-between items-center text-sm">
                     <div>
-                        <p class="font-semibold text-brand-gray">${item.name}</p>
+                        <p class="font-semibold text-brand-cream">${item.name}</p>
                         <p class="text-gray-400">${item.quantity} &times; ${formatRupiah(item.price)}</p>
                     </div>
-                    <p class="font-semibold text-brand-gray">${formatRupiah(item.quantity * item.price)}</p>
+                    <p class="font-semibold text-brand-cream">${formatRupiah(item.quantity * item.price)}</p>
                 </div>
             `).join('');
         } else {
