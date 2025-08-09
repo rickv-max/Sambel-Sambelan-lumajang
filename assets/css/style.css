@@ -90,3 +90,32 @@
     background-color: #C13522; /* Merah lebih gelap saat hover */
     transform: scale(1.02);
 }
+/* === GAYA BARU UNTUK FITUR PENCARIAN === */
+.search-input {
+    background-color: #2E2B2B; /* brand-slate */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #F3EFEA; /* brand-cream */
+    transition: all 0.2s ease-in-out;
+}
+.search-input::placeholder {
+    color: #71717A; /* gray-500 */
+}
+.search-input:focus {
+    outline: none;
+    border-color: #FFB838; /* brand-gold */
+    box-shadow: 0 0 0 2px rgba(255, 184, 56, 0.3);
+}
+
+/* Styling untuk hasil pencarian */
+#search-results .search-result-item {
+    background-color: #2E2B2B; /* brand-slate */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#search-results .category-badge {
+    background-color: #E0412B; /* brand-red */
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-weight: 600;
+}
