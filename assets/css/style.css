@@ -1,17 +1,37 @@
-/* Styling untuk animasi fade-in saat di-scroll */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* Custom Checkbox Styling */
+.menu-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    flex-shrink: 0; /* Mencegah checkbox menyusut */
 }
 
-.animate-on-scroll.is-visible {
-    opacity: 1;
+.menu-item input[type="checkbox"]:hover {
+    border-color: #FF7A00; /* brand-orange */
+}
+
+.menu-item input[type="checkbox"]:checked {
+    background-color: #D9230F; /* brand-red */
+    border-color: #D9230F;
+}
+
+.menu-item input[type="checkbox"]:checked::after {
+    content: '\2713'; /* Checkmark symbol */
+    font-size: 16px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Animasi untuk order summary */
+#order-summary.visible {
     transform: translateY(0);
-}
-
-/* Efek hover pada kartu menu */
-.menu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
