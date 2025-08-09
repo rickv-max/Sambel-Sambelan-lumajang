@@ -1,37 +1,30 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesan Online - Sambel Sambelan Lumajang</title>
-    <meta name="description" content="Pesan langsung menu favoritmu dari Sambel Sambelan Lumajang. Pilih, pesan, dan nikmati pedasnya!">
+    <title>Galeri Menu - Sambel Sambelan Lumajang</title>
+    <meta name="description" content="Jelajahi galeri menu interaktif dari Sambel Sambelan Lumajang. Pengalaman memesan yang tak terlupakan.">
     
-    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Poppins & Lato -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         'poppins': ['Poppins', 'sans-serif'],
-                        'lato': ['Lato', 'sans-serif']
+                        'inter': ['Inter', 'sans-serif']
                     },
                     colors: {
-                        'brand-red': '#D9230F',
-                        'brand-orange': '#FF7A00',
-                        'brand-green': '#28A745',
-                        'brand-cream': '#FDFCF9', // Sedikit lebih cerah
-                        'brand-dark': '#1E1E1E',
-                        'brand-brown': '#4a2c2a'
+                        'brand-red': '#EF4444', // Merah yang lebih vibrant
+                        'brand-cream': '#F5EFE6',
+                        'brand-dark': '#1c1a19',
+                        'brand-light-dark': '#2a2726',
                     }
                 }
             }
@@ -39,63 +32,53 @@
     </script>
 </head>
 
-<body class="bg-brand-cream font-lato text-brand-dark">
+<body class="bg-brand-dark text-brand-cream font-inter overflow-hidden">
 
-    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 md:px-6 py-4">
-            <h1 class="font-poppins font-bold text-2xl text-brand-brown">
-                Sambel Sambelan Lumajang
+    <div class="main-wrapper lg:flex h-screen">
+
+        <!-- Sidebar Kiri: Navigasi Kategori -->
+        <aside class="lg:w-[280px] bg-brand-dark border-r border-white/10 p-6 flex-shrink-0 flex flex-col">
+            <h1 class="font-poppins font-bold text-2xl text-white mb-12">
+                Sambelan<span class="text-brand-red">.</span>
             </h1>
-        </div>
-    </header>
+            <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Kategori</h2>
+            <nav id="category-nav" class="space-y-2">
+                <!-- Navigasi Kategori dimuat oleh JS -->
+            </nav>
+            <footer class="mt-auto text-center text-gray-500 text-xs">
+                &copy; 2025 Sambel Sambelan Lumajang
+            </footer>
+        </aside>
 
-    <main class="container mx-auto p-4 md:p-6">
-        <div class="text-center mb-10 md:mb-16">
-            <h2 class="font-poppins font-extrabold text-4xl md:text-5xl text-brand-brown tracking-tight">Pesan Menu Anda</h2>
-            <p class="text-gray-600 mt-3 text-lg max-w-2xl mx-auto">Klik pada kategori untuk melihat menu, lalu tentukan jumlah pesanan Anda.</p>
-        </div>
-
-        <!-- Layout 2 Kolom untuk Desktop -->
-        <div class="lg:flex lg:gap-8 lg:items-start">
-            
-            <!-- Kolom Kiri: Menu Accordion -->
-            <div id="menu-container" class="lg:w-3/5 space-y-4">
-                <!-- Menu Accordion akan dimuat di sini oleh JavaScript -->
+        <!-- Konten Utama: Menu yang bisa di-slide -->
+        <main class="flex-1 overflow-hidden relative">
+            <div id="menu-track" class="flex h-full transition-transform duration-700 ease-in-out">
+                <!-- Halaman-halaman menu dimuat oleh JS -->
             </div>
+        </main>
 
-            <!-- Kolom Kanan: Keranjang Pesanan (Sticky) -->
-            <div class="lg:w-2/5 mt-10 lg:mt-0">
-                <div id="sticky-cart" class="sticky top-24">
-                    <div class="bg-white rounded-xl shadow-lg border border-gray-100">
-                        <div class="p-6 border-b border-gray-100">
-                            <h3 class="font-poppins font-bold text-xl text-brand-brown">Rincian Pesanan</h3>
-                        </div>
-                        <div id="cart-items" class="p-6 space-y-4 max-h-[40vh] overflow-y-auto">
-                            <!-- Rincian item pesanan akan muncul di sini -->
-                            <p id="empty-cart-message" class="text-gray-500 text-center py-8">Keranjang Anda masih kosong.</p>
-                        </div>
-                        <div class="p-6 bg-gray-50/50 rounded-b-xl">
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="font-semibold text-gray-600">Total Harga</span>
-                                <span id="total-price" class="font-poppins font-bold text-2xl text-brand-brown">Rp 0</span>
-                            </div>
-                            <button id="order-button" class="w-full bg-brand-red text-white font-bold py-4 px-6 rounded-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-[1.02] disabled:bg-gray-400 disabled:cursor-not-allowed disabled:scale-100 flex items-center justify-center gap-2" disabled>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.25 1.25a8.75 8.75 0 100 17.5 8.75 8.75 0 000-17.5zM3.666 12.336a7.25 7.25 0 018.67-8.67l-8.67 8.67zM10.25 2.75a7.5 7.5 0 00-5.303 12.803l7.803-7.803A7.472 7.472 0 0010.25 2.75zM12.91 16.34a7.252 7.252 0 01-8.67-8.67l8.67 8.67z"/></svg>
-                                Pesan via WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </div>
+
+    <!-- Keranjang Pesanan (Glassmorphism) -->
+    <div id="order-summary" class="fixed bottom-4 left-4 right-4 lg:left-auto lg:w-[420px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6 transform translate-y-[150%] transition-transform duration-500 z-50">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="font-poppins font-bold text-xl text-white">Keranjang Anda</h3>
+            <div id="item-count-badge" class="bg-brand-red text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full transition-transform duration-300">0</div>
         </div>
-    </main>
-    
-    <footer class="text-center py-10 mt-16 border-t border-gray-200">
-        <p class="text-gray-500">&copy; 2025 Sambel Sambelan Lumajang. All Rights Reserved.</p>
-    </footer>
+        
+        <div id="cart-items" class="space-y-3 max-h-[15vh] overflow-y-auto pr-2">
+             <p id="empty-cart-message" class="text-gray-400 text-center py-4">Pilih menu untuk memulai.</p>
+        </div>
 
-    <!-- JavaScript Lengkap -->
+        <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
+            <span class="font-semibold text-gray-300">Total</span>
+            <span id="total-price" class="font-poppins font-bold text-2xl text-white">Rp 0</span>
+        </div>
+        <button id="order-button" class="w-full mt-4 bg-brand-red text-white font-bold py-4 rounded-lg hover:bg-red-600 transition-all duration-300 transform hover:scale-[1.03] disabled:bg-gray-600 disabled:opacity-50 disabled:scale-100">
+            Pesan Sekarang
+        </button>
+    </div>
+
     <script src="assets/js/script.js"></script>
-
 </body>
 </html>
