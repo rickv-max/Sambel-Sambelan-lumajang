@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderMenuAndNav() {
         const chipsContainer = document.createElement('div');
-        chipsContainer.className = 'flex items-center gap-2 overflow-x-auto pb-2 scroll-snap-x-mandatory';
+        chipsContainer.className = 'flex items-center gap-3 overflow-x-auto pb-3';
         categoryNav.appendChild(chipsContainer);
 
         Object.keys(menuData).forEach((category, index) => {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const chip = document.createElement('a');
             chip.href = `#${categoryId}`;
             chip.textContent = category;
-            chip.className = 'category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold';
+            chip.className = 'category-chip flex-shrink-0 px-5 py-2 rounded-full text-sm font-semibold';
             if (index === 0) chip.classList.add('active');
             chipsContainer.appendChild(chip);
 
@@ -49,23 +49,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const itemsHTML = data.items.map(item => `
                 <div class="menu-item p-4 rounded-xl flex items-center justify-between">
                     <div class="mr-4">
-                        <p class="font-semibold text-white">${item.name}</p>
-                        <p class="text-sm text-brand-gold font-bold">${formatRupiah(item.price)}</p>
+                        <p class="font-semibold text-brand-gray">${item.name}</p>
+                        <p class="text-sm text-brand-accent font-bold">${formatRupiah(item.price)}</p>
                     </div>
-                    <div class="quantity-selector flex items-center bg-brand-dark rounded-lg">
-                        <button class="quantity-minus text-brand-red w-10 h-10 text-xl font-bold">-</button>
-                        <input type="number" class="quantity-input w-12 h-10 text-center font-bold text-white bg-transparent focus:outline-none" value="0" min="0" data-name="${item.name}" data-price="${item.price}">
-                        <button class="quantity-plus text-brand-red w-10 h-10 text-xl font-bold">+</button>
+                    <div class="quantity-selector flex items-center bg-black rounded-full">
+                        <button class="quantity-minus text-brand-red w-10 h-10 text-2xl font-bold">-</button>
+                        <input type="number" class="quantity-input w-12 h-10 text-center font-bold text-brand-gray bg-transparent focus:outline-none" value="0" min="0" data-name="${item.name}" data-price="${item.price}">
+                        <button class="quantity-plus text-brand-red w-10 h-10 text-2xl font-bold">+</button>
                     </div>
                 </div>
             `).join('');
             
             section.innerHTML = `
-                <div class="section-header py-4 border-b border-white/10">
-                    <h2 class="font-poppins font-bold text-2xl text-white">${category}</h2>
+                <div class="section-header py-4">
+                    <h2 class="font-bold text-2xl text-white">${category}</h2>
                     ${data.note ? `<p class="text-gray-400 text-sm mt-1">${data.note}</p>` : ''}
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-6">${itemsHTML}</div>
+                <div class="grid grid-cols-1 gap-3 pt-4">${itemsHTML}</div>
             `;
             menuContent.appendChild(section);
         });
@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', function() {
             modalCartItems.innerHTML = selectedItems.map(item => `
                 <div class="flex justify-between items-center text-sm">
                     <div>
-                        <p class="font-semibold text-white">${item.name}</p>
+                        <p class="font-semibold text-brand-gray">${item.name}</p>
                         <p class="text-gray-400">${item.quantity} &times; ${formatRupiah(item.price)}</p>
                     </div>
-                    <p class="font-semibold text-white">${formatRupiah(item.quantity * item.price)}</p>
+                    <p class="font-semibold text-brand-gray">${formatRupiah(item.quantity * item.price)}</p>
                 </div>
             `).join('');
         } else {
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const items = updateOrder();
         if (items.length === 0) return;
         let message = "*PESANAN BARU* 🌶️\n\n";
-        message += "Halo Sambel Sambelan Lumajang, saya mau pesan:\n\n";
+        message += "Halo Sambel Sambelan, saya mau pesan:\n\n";
         items.forEach(item => {
             message += `- ${item.name} (x${item.quantity})\n`;
         });
