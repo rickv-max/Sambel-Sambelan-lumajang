@@ -60,8 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderMenu() {
         for (const category in menuData) {
             const categoryData = menuData[category];
+            const accordionItem = document.createElement('div');
+            // Semua kategori akan dibuat sebagai accordion item tanpa terkecuali
+            accordionItem.className = 'accordion-item bg-white rounded-xl shadow-md overflow-hidden';
 
-            // Membuat item-item HTML untuk setiap kategori
             const itemsHTML = categoryData.items.map(item => {
                 const priceFormatted = (item.price / 1000) + 'K';
                 return `
@@ -79,35 +81,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }).join('');
 
-            // Pengecualian: Jika kategori adalah "MENU KOMPLIT", buat card statis
-            if (category === "MENU KOMPLIT") {
-                const staticCard = document.createElement('div');
-                staticCard.className = 'bg-white p-6 rounded-xl shadow-md'; // Card statis
-                staticCard.innerHTML = `
-                    <h3 class="font-poppins font-bold text-2xl text-brand-brown">${category}</h3>
-                    ${categoryData.note ? `<p class="text-sm text-gray-500 mt-1 mb-4">${categoryData.note}</p>` : '<div class="mb-4"></div>'}
-                    <div class="space-y-2">${itemsHTML}</div>
-                `;
-                menuContainer.appendChild(staticCard);
-            } 
-            // Untuk semua kategori lainnya, buat accordion
-            else {
-                const accordionItem = document.createElement('div');
-                accordionItem.className = 'accordion-item bg-white rounded-xl shadow-md overflow-hidden';
-                accordionItem.innerHTML = `
-                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-left">
-                        <div>
-                            <h3 class="font-poppins font-bold text-2xl text-brand-brown">${category}</h3>
-                            ${categoryData.note ? `<p class="text-sm text-gray-500 mt-1">${categoryData.note}</p>` : ''}
-                        </div>
-                        <svg class="accordion-icon w-6 h-6 text-brand-brown flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="space-y-2">${itemsHTML}</div>
+            accordionItem.innerHTML = `
+                <button class="accordion-toggle w-full flex justify-between items-center p-6 text-left">
+                    <div>
+                        <h3 class="font-poppins font-bold text-2xl text-brand-brown">${category}</h3>
+                        ${categoryData.note ? `<p class="text-sm text-gray-500 mt-1">${categoryData.note}</p>` : ''}
                     </div>
-                `;
-                menuContainer.appendChild(accordionItem);
-            }
+                    <svg class="accordion-icon w-6 h-6 text-brand-brown flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="space-y-2">${itemsHTML}</div>
+                </div>
+            `;
+            menuContainer.appendChild(accordionItem);
         }
     }
 
