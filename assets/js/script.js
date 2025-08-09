@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         message += `\n*Total Pesanan: ${formatRupiah(totalPrice)}*`;
         message += "\n\nMohon di-follow up ya. Terima kasih.";
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        window.open(`https.wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
     }
 
     document.addEventListener('click', (e) => {
@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (quantityBtn) {
             const input = quantityBtn.parentElement.querySelector('input');
             let value = parseInt(input.value);
+            // KODE YANG DIPERBAIKI ADA DI SINI:
             value = quantityBtn.classList.contains('quantity-plus') ? value + 1 : Math.max(0, value - 1);
             input.value = value;
             if(navigator.vibrate) navigator.vibrate(50);
@@ -190,4 +191,4 @@ document.addEventListener('DOMContentLoaded', function() {
     renderMenuAndNav();
     initObservers();
     updateOrder();
-});```
+});
