@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalPriceBar = document.getElementById('total-price-bar');
     const itemCountBadge = document.getElementById('item-count-badge');
     const orderModal = document.getElementById('order-modal');
-    const modalContent = document.getElementById('modal-content');
     const closeModalButton = document.getElementById('close-modal-button');
     const modalCartItems = document.getElementById('modal-cart-items');
     const modalTotalPrice = document.getElementById('modal-total-price');
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 }, { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { name: "Cappucino", price: 16000 } ] }
     };
     let allMenuItems = [];
-    let cart = {}; // Objek untuk menyimpan kuantitas pesanan: { "Nama Item": jumlah }
+    let cart = {};
 
     const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
 
@@ -94,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderSearchResults(results) {
         searchResultsContainer.innerHTML = `<div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${results.map(item => renderMenuItem(item, true)).join('')}</div>`;
+        // PERBAIKAN PENTING: Panggil observer untuk hasil pencarian
+        initItemObservers(searchResultsContainer);
     }
 
     function updateOrder() {
@@ -184,9 +185,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { rootMargin: "-30% 0px -70% 0px" });
+    
+    // PERBAIKAN: Pisahkan item observer agar bisa dipanggil ulang
+    function initItemObservers(container) {
+        const items = container.querySelectorAll('.menu-item');
+        items.forEach(item => itemObserver.observe(item));
+    }
 
     function initObservers() {
-        document.querySelectorAll('.menu-item').forEach(item => itemObserver.observe(item));
+        initItemObservers(menuContent);
         document.querySelectorAll('.menu-section').forEach(section => sectionObserver.observe(section));
     }
 
@@ -207,7 +214,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
     }
     
-    // Event listener utama yang menangani SEMUA klik
     document.addEventListener('click', (e) => {
         // Klik pada chip navigasi
         const chip = e.target.closest('.category-chip');
@@ -217,7 +223,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (targetSection) {
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             }
-            return; // Hentikan eksekusi agar tidak bentrok
         }
 
         // Klik pada tombol kuantitas
@@ -231,19 +236,16 @@ document.addEventListener('DOMContentLoaded', function() {
             input.value = value;
             if (navigator.vibrate) navigator.vibrate(50);
             updateOrder();
-            return;
         }
 
         // Klik untuk membuka modal
         if (e.target.closest('#open-cart-button')) {
             toggleModal(true);
-            return;
         }
 
         // Klik untuk menutup modal
         if (e.target.closest('#close-modal-button') || e.target === orderModal) {
             toggleModal(false);
-            return;
         }
 
         // Klik tombol order final
