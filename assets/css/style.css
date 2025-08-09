@@ -93,6 +93,8 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #F3EFEA; /* brand-cream */
     transition: all 0.2s ease-in-out;
+    padding-top: 0.6rem !important;    /* Sekitar 10px */
+    padding-bottom: 0.6rem !important; /* Sekitar 10px */
 }
 .search-input::placeholder {
     color: #71717A; /* gray-500 */
