@@ -32,9 +32,17 @@ document.addEventListener('DOMContentLoaded', function() {
         categoryNav.appendChild(chipsContainer);
 
         Object.keys(menuData).forEach((category, index) => {
-            const categoryId = category.replace(/\s+/g, '-').toLowerCase();
+            // -- INI BAGIAN YANG DIPERBAIKI --
+            // Membuat ID yang bersih dengan menghapus karakter spesial (&)
+            const categoryId = category
+                .toLowerCase()
+                .replace(/ & /g, ' dan ') // Ganti ' & ' dengan ' dan '
+                .replace(/\s+/g, '-')     // Ganti spasi dengan strip
+                .replace(/[^a-z0-9-]/g, ''); // Hapus semua karakter non-alfanumerik lainnya
+
             const data = menuData[category];
 
+            // 1. Buat "Chips" Navigasi
             const chip = document.createElement('a');
             chip.href = `#${categoryId}`;
             chip.textContent = category;
@@ -42,9 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (index === 0) chip.classList.add('active');
             chipsContainer.appendChild(chip);
 
+            // 2. Buat Seksi Menu
             const section = document.createElement('section');
             section.id = categoryId;
-            section.className = 'menu-section pt-16 -mt-16';
+            section.className = 'menu-section pt-16 -mt-16'; // Padding & negative margin untuk offset sticky header
             const itemsHTML = data.items.map(item => `
                 <div class="menu-item bg-brand-light-dark p-4 rounded-xl flex items-center justify-between">
                     <div class="mr-4">
@@ -117,9 +126,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const id = entry.target.id;
                 const activeChip = document.querySelector(`.category-chip[href="#${id}"]`);
-                document.querySelectorAll('.category-chip').forEach(chip => chip.classList.remove('active'));
-                activeChip.classList.add('active');
-                activeChip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                if (activeChip) {
+                    document.querySelectorAll('.category-chip').forEach(chip => chip.classList.remove('active'));
+                    activeChip.classList.add('active');
+                    activeChip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
             }
         });
     }, { rootMargin: "-30% 0px -70% 0px" });
@@ -153,7 +164,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const chip = e.target.closest('.category-chip');
         if (chip) {
             e.preventDefault();
-            document.querySelector(chip.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            const targetSection = document.querySelector(chip.getAttribute('href'));
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
         }
         const quantityBtn = e.target.closest('.quantity-plus, .quantity-minus');
         if (quantityBtn) {
