@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Sayur": { note: null, items: [ { name: "Tumis Kangkung Polos", price: 10000 }, { name: "Tumis Tauge Polos", price: 10000 }, { name: "Tumis Tauge Teri Medan", price: 15000 }, { name: "Sayur Asem", price: 9000 }, ] },
         "Sambelan": { note: "Belum Include Nasi Putih", items: [ { name: "Sambal Terasi Segar", price: 5000 }, { name: "Sambal Terasi Matang", price: 4500 }, { name: "Sambal Tempong", price: 4500 }, { name: "Sambal Kecap", price: 4000 }, { name: "Sambal Thailand", price: 6000 }, { name: "Sambal Dabu - Dabu", price: 6000 }, { name: "Sambal Tahu Tempe", price: 8000 }, { name: "Sambal Bakar", price: 6000 }, { name: "Sambal Bakar Kikil", price: 14000 }, { name: "Sambal Bakar Teri", price: 10000 }, { name: "Sambal Bakar Udang", price: 17000 }, { name: "Sambal Bakar Cumi", price: 17000 }, { name: "Sambal Bakar Babat", price: 16000 }, ] },
         "Chinese & Seafood": { note: null, items: [ { name: "Nasi Hainan Ayam Panggang", price: 32000 }, { name: "Nasi Hainan Ayam Rebus", price: 30000 }, { name: "Ayam Panggang 1 Ekor", price: 110000 }, { name: "Ayam Panggang 1/2 Ekor", price: 65000 }, { name: "Ayam Rebus 1 Ekor", price: 95000 }, { name: "Ayam Rebus 1/2 Ekor", price: 45000 }, { name: "Gurami Jimbaran Besar", price: 75000 }, { name: "Gurami Jimbaran Sedang", price: 60000 }, { name: "Gurami Goreng Dabu - Dabu Besar", price: 75000 }, { name: "Gurami Goreng Dabu - Dabu Sedang", price: 60000 }, { name: "Udang Bakar Jimbaran", price: 40000 }, { name: "Kerang Bakar Jimbaran", price: 40000 }, ] },
-        "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 }, { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { "name": "Cappucino", price: 16000 }, ] },
+        "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 }, { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { name: "Cappucino", price: 16000 }, ] },
     };
 
     const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
@@ -32,17 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
         categoryNav.appendChild(chipsContainer);
 
         Object.keys(menuData).forEach((category, index) => {
-            // -- INI BAGIAN YANG DIPERBAIKI --
-            // Membuat ID yang bersih dengan menghapus karakter spesial (&)
-            const categoryId = category
-                .toLowerCase()
-                .replace(/ & /g, ' dan ') // Ganti ' & ' dengan ' dan '
-                .replace(/\s+/g, '-')     // Ganti spasi dengan strip
-                .replace(/[^a-z0-9-]/g, ''); // Hapus semua karakter non-alfanumerik lainnya
-
+            const categoryId = category.toLowerCase().replace(/ & /g, ' dan ').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             const data = menuData[category];
 
-            // 1. Buat "Chips" Navigasi
             const chip = document.createElement('a');
             chip.href = `#${categoryId}`;
             chip.textContent = category;
@@ -50,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (index === 0) chip.classList.add('active');
             chipsContainer.appendChild(chip);
 
-            // 2. Buat Seksi Menu
             const section = document.createElement('section');
             section.id = categoryId;
-            section.className = 'menu-section pt-16 -mt-16'; // Padding & negative margin untuk offset sticky header
+            section.className = 'menu-section pt-4';
+            
             const itemsHTML = data.items.map(item => `
                 <div class="menu-item bg-brand-light-dark p-4 rounded-xl flex items-center justify-between">
                     <div class="mr-4">
@@ -67,10 +59,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             `).join('');
+            
             section.innerHTML = `
-                <h2 class="font-poppins font-bold text-3xl text-white">${category}</h2>
-                ${data.note ? `<p class="text-gray-400 mt-1 mb-6">${data.note}</p>` : '<div class="mb-6"></div>'}
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">${itemsHTML}</div>
+                <div class="section-header py-4 border-b border-white/10">
+                    <h2 class="font-poppins font-bold text-2xl text-white">${category}</h2>
+                    ${data.note ? `<p class="text-gray-400 text-sm mt-1">${data.note}</p>` : ''}
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-6">${itemsHTML}</div>
             `;
             menuContent.appendChild(section);
         });
@@ -108,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `).join('');
         } else {
             modalCartItems.innerHTML = `<p class="text-gray-400 text-center py-4">Keranjang Anda kosong.</p>`;
-            toggleModal(false); // Otomatis tutup modal jika keranjang kosong
+            toggleModal(false);
         }
         return selectedItems;
     }
@@ -191,7 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // --- Inisialisasi Aplikasi ---
     renderMenuAndNav();
     initObservers();
     updateOrder();
-});
+});```
