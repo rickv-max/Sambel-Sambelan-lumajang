@@ -1,63 +1,58 @@
-/* Styling Latar Belakang "Subtle Grit" */
-body {
-    background-color: #111827; /* brand-dark */
-    background-image: 
-        radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 60%),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-size: auto, 200px;
-    background-position: center, center;
-    opacity: 1;
+/* Styling scrollbar minimalis & modern untuk tema gelap */
+::-webkit-scrollbar { 
+    width: 6px; 
+}
+::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb { 
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 10px; 
+}
+::-webkit-scrollbar-thumb:hover { 
+    background: rgba(255, 255, 255, 0.3); 
 }
 
-/* Styling scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(251, 191, 36, 0.3); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(251, 191, 36, 0.5); }
-
-/* Menyembunyikan scrollbar untuk navigasi chips */
-.category-chips-container::-webkit-scrollbar { display: none; }
-.category-chips-container { -ms-overflow-style: none; scrollbar-width: none; }
+/* Menyembunyikan scrollbar untuk navigasi chips di mobile */
+.category-chips-container::-webkit-scrollbar { 
+    display: none; 
+}
+.category-chips-container { 
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
 
 /* Styling untuk Navigasi Kategori "Chips" */
 .category-chip {
     scroll-snap-align: start;
     transition: all 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #9CA3AF; /* gray-400 */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #333333; /* Warna abu-abu gelap untuk chip tidak aktif */
+    color: #AAAAAA; /* Warna teks abu-abu terang */
 }
 .category-chip.active {
-    color: white;
+    background-color: #CF0A0A; /* brand-red */
+    color: #EEEEEE; /* brand-gray */
     font-weight: 600;
-    background-image: linear-gradient(to right, #F97316, #DC2626); /* Oranye ke Merah */
-    border-color: rgba(249, 115, 22, 0.5);
-    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
 }
 
-/* Animasi Staggered untuk item menu */
+/* Animasi Staggered untuk item menu saat masuk viewport */
 @keyframes fadeInSlideUp {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(15px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 .menu-item {
     opacity: 0;
-    background-color: rgba(255, 255, 255, 0.05); /* Frosted Glass */
+    background-color: #CF0A0A; /* brand-red */
     border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    transition: all 0.2s ease-in-out;
-}
-.menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-    transform: translateY(-2px);
 }
 
-/* Animasi dan Styling Modal & Floating Cart */
-#order-modal {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease-in-out;
-}
+/* Animasi untuk Modal/Bottom Sheet */
 #order-modal.visible {
     opacity: 1;
     pointer-events: auto;
@@ -71,7 +66,7 @@ body {
     transform: translateY(0);
 }
 
-/* Mencegah Double-Tap Zoom */
+/* Mencegah Double-Tap Zoom pada tombol kuantitas */
 .quantity-selector button {
     touch-action: manipulation;
 }
@@ -79,17 +74,8 @@ body {
 /* Styling untuk Section Header yang Sticky */
 .section-header {
     position: sticky;
-    top: 115px; 
+    top: 115px; /* Sesuaikan jika tinggi header berubah */
     z-index: 30;
-    background-color: #111827; /* brand-dark */
-}
-
-/* Styling Tombol Order dengan Gradasi */
-.order-button-animated {
-    background-image: linear-gradient(to right, #F97316, #DC2626);
-    background-size: 200% auto;
-}
-.order-button-animated:not(:disabled):hover {
-    background-position: right center;
-    transform: scale(1.02);
+    background-color: #000000; /* brand-black */
+    padding-bottom: 0.5rem;
 }
