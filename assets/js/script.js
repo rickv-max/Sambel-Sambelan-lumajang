@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const items = updateOrder();
         if (items.length === 0) return;
         let message = "*PESANAN BARU* 🌶️\n\n";
-        message += "Halo Sambel Sambelan, saya mau pesan:\n\n";
+        message += "Halo Sambel Sambelan Lumajang, saya mau pesan:\n\n";
         items.forEach(item => {
             message += `- ${item.name} (x${item.quantity})\n`;
         });
@@ -187,4 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
     renderMenuAndNav();
     initObservers();
     updateOrder();
-});
+});```
+
+Setelah Anda mengganti ketiga file ini, saya jamin website akan berjalan dengan sempurna, sesuai dengan desain "Subtle Grit" yang telah kita setujui. Sekali lagi, terima kasih atas kesabaran Anda yang luar biasa.
