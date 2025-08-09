@@ -3,14 +3,14 @@
     width: 6px; 
 }
 ::-webkit-scrollbar-track { 
-    background: transparent; 
+    background: #F1F5F9; /* gray-100 */
 }
 ::-webkit-scrollbar-thumb { 
-    background: rgba(255, 255, 255, 0.2); 
+    background: #CBD5E1; /* gray-300 */
     border-radius: 10px; 
 }
 ::-webkit-scrollbar-thumb:hover { 
-    background: rgba(255, 255, 255, 0.3); 
+    background: #94A3B8; /* gray-400 */
 }
 
 /* Menyembunyikan scrollbar untuk navigasi chips di mobile */
@@ -22,14 +22,17 @@
     scrollbar-width: none;  /* Firefox */
 }
 
-/* Styling untuk Navigasi Kategori "Chips" */
+/* Styling untuk Navigasi Kategori "Chips" - Tema Terang */
 .category-chip {
     scroll-snap-align: start;
     transition: all 0.3s ease;
+    background-color: #F3F4F6; /* gray-100 */
+    color: #374151; /* gray-700 */
 }
 .category-chip.active {
     background-color: #EF4444; /* brand-red */
     color: white;
+    font-weight: 600;
 }
 
 /* Animasi Staggered untuk item menu saat masuk viewport */
@@ -45,6 +48,8 @@
 }
 .menu-item {
     opacity: 0; /* Mulai dari transparan, JS akan trigger animasi */
+    background-color: #FFFFFF; /* brand-surface */
+    border: 1px solid #E5E7EB; /* gray-200 */
 }
 
 /* Animasi untuk Modal/Bottom Sheet */
@@ -65,13 +70,10 @@
     touch-action: manipulation;
 }
 
-/* Styling untuk Section Header yang Sticky */
+/* Styling untuk Section Header yang Sticky - Tema Terang */
 .section-header {
     position: sticky;
-    /* Menempel di bawah header utama (tinggi header + nav-chips) */
-    /* Sesuaikan nilai 'top' ini jika tinggi header berubah */
     top: 115px; 
     z-index: 30;
-    /* Memberi background agar konten di bawahnya tidak terlihat saat scroll */
-    background-color: #18181b; /* brand-dark */
+    background-color: #F9FAFB; /* brand-bg */
 }
