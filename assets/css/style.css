@@ -1,87 +1,47 @@
-/* Memberi tekstur noise yang halus pada background untuk kesan premium */
-body {
-    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 40" width="40" height="20"%3E%3Cpath fill="%23a09d96" fill-opacity="0.03" d="M0 0h80v40H0zM20 20h40v20H20z"%3E%3C/path%3E%3C/svg%3E');
-}
+/* Mengatur scrollbar agar lebih minimalis & sesuai tema gelap */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
 
 /* Styling untuk menyembunyikan panah default di input number */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-/* Styling baru untuk quantity selector yang lebih sleek */
-.quantity-selector button {
-    width: 36px;
-    height: 36px;
-    font-size: 20px;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
-}
-
-.quantity-selector input {
-    width: 44px;
-    height: 36px;
-    border: none;
-    text-align: center;
-    font-weight: 600;
-    color: #4a2c2a; /* brand-brown */
-    background-color: transparent;
-}
-
-/* --- Styling Premium untuk Accordion --- */
-.accordion-item {
+/* Styling canggih untuk Navigasi Kategori */
+.category-link {
+    position: relative;
     transition: all 0.3s ease;
-    border: 1px solid #e5e7eb; /* Border abu-abu halus */
-    border-radius: 0.75rem; /* rounded-xl */
+    transform: translateX(0);
+}
+.category-link:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+}
+/* Efek GLOW saat aktif */
+.category-link.active {
+    color: white;
+    background-color: rgba(239, 68, 68, 0.1); /* bg-brand-red/10 */
+    box-shadow: inset 3px 0 0 0 #EF4444, 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
-.accordion-toggle {
-    transition: background-color 0.2s ease;
+/* Animasi untuk memunculkan item menu secara bertingkat */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.menu-item {
+    animation: fadeInSlideUp 0.5s ease-out forwards;
+    opacity: 0; /* Mulai dari transparan */
 }
 
-.accordion-toggle:hover {
-    background-color: #f9fafb; /* Warna hover yang sangat halus */
-}
-
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-    padding: 0 1.5rem;
-}
-
-/* Saat accordion terbuka (is-open) */
-.accordion-item.is-open {
-    /* Menambah efek 'ring' yang menonjol */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    border-color: #fde8e5;
-}
-
-.accordion-item.is-open .accordion-content {
-    max-height: 2000px; /* Nilai besar untuk mengakomodasi konten */
-    padding: 0.5rem 1.5rem 1.5rem;
-}
-
-.accordion-item.is-open .accordion-icon {
-    transform: rotate(180deg);
-}
-
-.accordion-icon {
-    transition: transform 0.3s ease-out;
-}
-
-/* Styling untuk item di keranjang agar tidak pecah */
-#cart-items .cart-item-name {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* Animasi untuk keranjang pesanan */
+#order-summary.visible {
+    transform: translateY(0);
 }
