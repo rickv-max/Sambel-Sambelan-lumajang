@@ -38,17 +38,25 @@ body {
 .menu-item {
     opacity: 0;
     background-color: #2a2726;
-    /* Efek Inner Glow */
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.4);
 }
 
-/* Animasi dan Styling Modal & Floating Cart */
-#order-modal, #floating-cart {
-    visibility: hidden;
-    transition: visibility 0.3s, transform 0.3s ease-in-out;
+/* === BAGIAN PERBAIKAN UTAMA ADA DI SINI === */
+
+/* Status default Modal: transparan dan tidak bisa diklik */
+#order-modal {
+    opacity: 0;
+    pointer-events: none; /* Klik akan menembus elemen ini */
+    transition: opacity 0.3s ease-in-out;
 }
-#order-modal.visible, #floating-cart.visible {
-    visibility: visible;
+/* Saat modal aktif: terlihat dan bisa diklik */
+#order-modal.visible {
+    opacity: 1;
+    pointer-events: auto; /* Elemen kembali normal */
+}
+
+/* Animasi untuk Floating Cart Bar */
+#floating-cart.visible {
     transform: translateY(0);
 }
 
@@ -62,7 +70,7 @@ body {
     position: sticky;
     top: 115px;
     z-index: 30;
-    background-color: #1c1a19; /* brand-dark */
+    background-color: #1c1a19;
 }
 
 /* Styling Tombol Order dengan Gradasi */
