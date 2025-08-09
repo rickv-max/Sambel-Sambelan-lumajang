@@ -38,6 +38,7 @@ body {
 .menu-item {
     opacity: 0;
     background-color: #2a2726;
+    /* Efek Inner Glow */
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.4);
 }
 
@@ -54,6 +55,9 @@ body {
     opacity: 1;
     pointer-events: auto; /* Elemen kembali normal */
 }
+#order-modal.visible #modal-content {
+    transform: translateY(0);
+}
 
 /* Animasi untuk Floating Cart Bar */
 #floating-cart.visible {
@@ -68,7 +72,7 @@ body {
 /* Styling untuk Section Header yang Sticky */
 .section-header {
     position: sticky;
-    top: 115px;
+    top: 115px; 
     z-index: 30;
     background-color: #1c1a19;
 }
