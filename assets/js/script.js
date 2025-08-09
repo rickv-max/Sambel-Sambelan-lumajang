@@ -58,11 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderMenuAndNav() {
         menuContent.innerHTML = '';
         categoryNav.innerHTML = '';
-
         const chipsContainer = document.createElement('div');
         chipsContainer.className = 'flex items-center gap-3 overflow-x-auto pb-3';
         categoryNav.appendChild(chipsContainer);
-
         Object.keys(menuData).forEach((category, index) => {
             const categoryId = category.toLowerCase().replace(/ & /g, ' dan ').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             const data = menuData[category];
@@ -72,12 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
             chip.className = 'category-chip flex-shrink-0 px-5 py-2 rounded-full text-sm font-semibold';
             if (index === 0) chip.classList.add('active');
             chipsContainer.appendChild(chip);
-
             const section = document.createElement('section');
             section.id = categoryId;
             section.className = 'menu-section pt-4';
             const itemsHTML = data.items.map(item => renderMenuItem(item, false)).join('');
-            
             section.innerHTML = `
                 <div class="section-header py-4">
                     <h2 class="font-bold text-2xl text-moka-dark">${category}</h2>
@@ -99,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedItems = [];
         let totalItems = 0;
         let totalPrice = 0;
-        
         Object.keys(cart).forEach(itemName => {
             const quantity = cart[itemName];
             if (quantity > 0) {
@@ -111,13 +106,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-
         floatingCart.classList.toggle('visible', totalItems > 0);
         itemCountBadge.textContent = totalItems;
         totalPriceBar.textContent = formatRupiah(totalPrice);
         modalTotalPrice.textContent = formatRupiah(totalPrice);
         orderButton.disabled = selectedItems.length === 0;
-
         if (selectedItems.length > 0) {
             modalCartItems.innerHTML = selectedItems.map(item => `
                 <div class="flex justify-between items-center text-sm">
@@ -137,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleSearch(event) {
         const query = event.target.value.toLowerCase().trim();
-
         if (query.length === 0) {
             menuContent.classList.remove('hidden');
             categoryNav.classList.remove('hidden');
@@ -145,13 +137,10 @@ document.addEventListener('DOMContentLoaded', function() {
             noResultsMessage.classList.add('hidden');
             return;
         }
-
         const filteredResults = allMenuItems.filter(item => item.name.toLowerCase().includes(query));
-
         menuContent.classList.add('hidden');
         categoryNav.classList.add('hidden');
         searchResultsContainer.classList.remove('hidden');
-
         if (filteredResults.length > 0) {
             renderSearchResults(filteredResults);
             noResultsMessage.classList.add('hidden');
@@ -211,7 +200,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
     }
     
-    // Event listener utama
     document.addEventListener('click', (e) => {
         const chip = e.target.closest('.category-chip');
         if (chip) {
@@ -221,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             }
         }
-
         const quantityBtn = e.target.closest('.quantity-plus, .quantity-minus');
         if (quantityBtn) {
             const input = quantityBtn.parentElement.querySelector('input');
@@ -233,15 +220,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navigator.vibrate) navigator.vibrate(50);
             updateOrder();
         }
-
         if (e.target.closest('#open-cart-button')) {
             toggleModal(true);
         }
-
         if (e.target.closest('#close-modal-button') || e.target === orderModal) {
             toggleModal(false);
         }
-
         if (e.target === orderButton) {
             generateWhatsAppLink();
         }
