@@ -14,14 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const orderButton = document.getElementById('order-button');
     const whatsappNumber = '6281336777726';
 
-    // --- Database Menu (Lengkap & Diperbaiki) ---
+    // --- Database Menu (Lengkap) ---
     const menuData = {
         "Menu Komplit": { note: "Sudah Include Nasi Putih", items: [ { name: "Nasi Ayam Kremes (Paha Potong)", price: 20000 }, { name: "Nasi Ayam Kremes Kampung (Paha/Dada)", price: 30000 }, { name: "Nasi Tempong Ayam Kampung (Paha/Dada)", price: 25000 }, { name: "Nasi Tempong Polos", price: 12000 }, { name: "Nasi Garang Asem (Paha/Dada)", price: 30000 }, { name: "Nasi Ikan Pe Goreng", price: 16000 }, { name: "Nasi Ikan Pe Kuah", price: 18000 }, { name: "Nasi Ayam Bakar Kampung (Paha/Dada)", price: 35000 }, ] },
         "Lauk": { note: "Belum Include Nasi Putih", items: [ { name: "1 Ekor Ayam Ingkung Kampung", price: 85000 }, { name: "Ayam Goreng Kremes (Paha Potong)", price: 15000 }, { name: "Ayam Goreng Kremes Kampung (Paha/Dada)", price: 25000 }, { name: "Bebek Goreng (Paha/Dada)", price: 30000 }, { name: "Ayam Bakar Kampung (Paha/Dada)", price: 30000 }, { name: "Burung Dara", price: 36000 }, { name: "Usus Ayam", price: 10000 }, { name: "Kulit Ayam", price: 12000 }, { name: "Ceker Ayam", price: 15000 }, { name: "Kepala Ayam isi 4", price: 9000 }, { name: "Kepala Bebek isi 3", price: 15000 }, { name: "Babat", price: 16000 }, { name: "Kikil", price: 15000 }, { name: "Nila", price: 18000 }, { name: "Lele isi 2", price: 15000 }, { name: "Teri", price: 7000 }, { name: "Ikan Asin", price: 10000 }, { name: "Tahu Tempe", price: 6000 }, { name: "Sop Buntut", price: 45000 }, { name: "Iga Bakar", price: 45000 }, { name: "Cumi Goreng", price: 20000 }, { name: "Udang Goreng", price: 17000 }, { name: "Nasi Putih", price: 5000 }, ] },
         "Sayur": { note: null, items: [ { name: "Tumis Kangkung Polos", price: 10000 }, { name: "Tumis Tauge Polos", price: 10000 }, { name: "Tumis Tauge Teri Medan", price: 15000 }, { name: "Sayur Asem", price: 9000 }, ] },
         "Sambelan": { note: "Belum Include Nasi Putih", items: [ { name: "Sambal Terasi Segar", price: 5000 }, { name: "Sambal Terasi Matang", price: 4500 }, { name: "Sambal Tempong", price: 4500 }, { name: "Sambal Kecap", price: 4000 }, { name: "Sambal Thailand", price: 6000 }, { name: "Sambal Dabu - Dabu", price: 6000 }, { name: "Sambal Tahu Tempe", price: 8000 }, { name: "Sambal Bakar", price: 6000 }, { name: "Sambal Bakar Kikil", price: 14000 }, { name: "Sambal Bakar Teri", price: 10000 }, { name: "Sambal Bakar Udang", price: 17000 }, { name: "Sambal Bakar Cumi", price: 17000 }, { name: "Sambal Bakar Babat", price: 16000 }, ] },
         "Chinese & Seafood": { note: null, items: [ { name: "Nasi Hainan Ayam Panggang", price: 32000 }, { name: "Nasi Hainan Ayam Rebus", price: 30000 }, { name: "Ayam Panggang 1 Ekor", price: 110000 }, { name: "Ayam Panggang 1/2 Ekor", price: 65000 }, { name: "Ayam Rebus 1 Ekor", price: 95000 }, { name: "Ayam Rebus 1/2 Ekor", price: 45000 }, { name: "Gurami Jimbaran Besar", price: 75000 }, { name: "Gurami Jimbaran Sedang", price: 60000 }, { name: "Gurami Goreng Dabu - Dabu Besar", price: 75000 }, { name: "Gurami Goreng Dabu - Dabu Sedang", price: 60000 }, { name: "Udang Bakar Jimbaran", price: 40000 }, { name: "Kerang Bakar Jimbaran", price: 40000 }, ] },
-        // KESALAHAN SEBELUMNYA ADA DI BARIS INI:
         "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 }, { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { name: "Cappucino", price: 16000 } ] },
     };
 
@@ -39,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const chip = document.createElement('a');
             chip.href = `#${categoryId}`;
             chip.textContent = category;
-            chip.className = 'category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold bg-brand-light-dark text-gray-300';
+            chip.className = 'category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold';
             if (index === 0) chip.classList.add('active');
             chipsContainer.appendChild(chip);
 
@@ -48,23 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
             section.className = 'menu-section pt-4';
             
             const itemsHTML = data.items.map(item => `
-                <div class="menu-item bg-brand-light-dark p-4 rounded-xl flex items-center justify-between">
+                <div class="menu-item p-4 rounded-xl flex items-center justify-between shadow-sm">
                     <div class="mr-4">
-                        <p class="font-semibold text-white">${item.name}</p>
+                        <p class="font-semibold text-brand-dark">${item.name}</p>
                         <p class="text-sm text-brand-red font-bold">${formatRupiah(item.price)}</p>
                     </div>
-                    <div class="quantity-selector flex items-center bg-brand-dark rounded-lg">
-                        <button class="quantity-minus text-white w-10 h-10 text-xl">-</button>
-                        <input type="number" class="quantity-input w-12 h-10 text-center font-bold text-white bg-transparent focus:outline-none" value="0" min="0" data-name="${item.name}" data-price="${item.price}">
-                        <button class="quantity-plus text-white w-10 h-10 text-xl">+</button>
+                    <div class="quantity-selector flex items-center bg-brand-bg rounded-lg border border-gray-200">
+                        <button class="quantity-minus text-brand-dark w-10 h-10 text-xl">-</button>
+                        <input type="number" class="quantity-input w-12 h-10 text-center font-bold text-brand-dark bg-transparent focus:outline-none" value="0" min="0" data-name="${item.name}" data-price="${item.price}">
+                        <button class="quantity-plus text-brand-dark w-10 h-10 text-xl">+</button>
                     </div>
                 </div>
             `).join('');
             
             section.innerHTML = `
-                <div class="section-header py-4 border-b border-white/10">
-                    <h2 class="font-poppins font-bold text-2xl text-white">${category}</h2>
-                    ${data.note ? `<p class="text-gray-400 text-sm mt-1">${data.note}</p>` : ''}
+                <div class="section-header py-4">
+                    <h2 class="font-poppins font-bold text-2xl text-brand-dark">${category}</h2>
+                    ${data.note ? `<p class="text-brand-gray text-sm mt-1">${data.note}</p>` : ''}
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-6">${itemsHTML}</div>
             `;
@@ -96,14 +95,14 @@ document.addEventListener('DOMContentLoaded', function() {
             modalCartItems.innerHTML = selectedItems.map(item => `
                 <div class="flex justify-between items-center text-sm">
                     <div>
-                        <p class="font-semibold text-white">${item.name}</p>
-                        <p class="text-gray-400">${item.quantity} &times; ${formatRupiah(item.price)}</p>
+                        <p class="font-semibold text-brand-dark">${item.name}</p>
+                        <p class="text-brand-gray">${item.quantity} &times; ${formatRupiah(item.price)}</p>
                     </div>
-                    <p class="font-semibold text-white">${formatRupiah(item.quantity * item.price)}</p>
+                    <p class="font-semibold text-brand-dark">${formatRupiah(item.quantity * item.price)}</p>
                 </div>
             `).join('');
         } else {
-            modalCartItems.innerHTML = `<p class="text-gray-400 text-center py-4">Keranjang Anda kosong.</p>`;
+            modalCartItems.innerHTML = `<p class="text-brand-gray text-center py-4">Keranjang Anda kosong.</p>`;
             toggleModal(false);
         }
         return selectedItems;
