@@ -59,3 +59,8 @@
 #floating-cart.visible {
     transform: translateY(0);
 }
+
+/* == BAGIAN PERBAIKAN: Mencegah Double-Tap Zoom == */
+.quantity-selector button {
+    touch-action: manipulation;
+}
