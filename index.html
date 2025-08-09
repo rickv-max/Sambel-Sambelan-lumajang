@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Menu - Sambel Sambelan Lumajang</title>
-    <meta name="description" content="Jelajahi galeri menu interaktif dari Sambel Sambelan Lumajang. Pengalaman memesan yang tak terlupakan.">
+    <title>Pesan Online - Sambel Sambelan Lumajang</title>
+    <meta name="description" content="Rasakan pengalaman memesan kuliner premium dari Sambel Sambelan Lumajang. Cepat, modern, dan intuitif.">
     
+    <!-- Tailwind CSS & Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Konfigurasi Tailwind Langsung -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        'poppins': ['Poppins', 'sans-serif'],
-                        'inter': ['Inter', 'sans-serif']
+                    fontFamily: { 
+                        'poppins': ['Poppins', 'sans-serif'], 
+                        'inter': ['Inter', 'sans-serif'] 
                     },
-                    colors: {
-                        'brand-red': '#EF4444', // Merah yang lebih vibrant
-                        'brand-cream': '#F5EFE6',
-                        'brand-dark': '#1c1a19',
-                        'brand-light-dark': '#2a2726',
+                    colors: { 
+                        'brand-red': '#EF4444', 
+                        'brand-cream': '#F5EFE6', 
+                        'brand-dark': '#18181b', 
+                        'brand-light-dark': '#27272a' 
                     }
                 }
             }
@@ -32,53 +36,59 @@
     </script>
 </head>
 
-<body class="bg-brand-dark text-brand-cream font-inter overflow-hidden">
+<body class="bg-brand-dark text-brand-cream font-inter">
 
-    <div class="main-wrapper lg:flex h-screen">
+    <!-- Header & Navigasi Kategori Sticky -->
+    <header class="sticky top-0 z-40 bg-brand-dark/80 backdrop-blur-lg">
+        <div class="container mx-auto px-4 pt-4">
+            <h1 class="font-poppins font-bold text-2xl text-white">Sambelan<span class="text-brand-red">.</span></h1>
+        </div>
+        <nav id="category-nav" class="category-chips-container mt-4 px-4">
+            <!-- Kategori Chips akan dimuat di sini oleh JavaScript -->
+        </nav>
+    </header>
 
-        <!-- Sidebar Kiri: Navigasi Kategori -->
-        <aside class="lg:w-[280px] bg-brand-dark border-r border-white/10 p-6 flex-shrink-0 flex flex-col">
-            <h1 class="font-poppins font-bold text-2xl text-white mb-12">
-                Sambelan<span class="text-brand-red">.</span>
-            </h1>
-            <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Kategori</h2>
-            <nav id="category-nav" class="space-y-2">
-                <!-- Navigasi Kategori dimuat oleh JS -->
-            </nav>
-            <footer class="mt-auto text-center text-gray-500 text-xs">
-                &copy; 2025 Sambel Sambelan Lumajang
-            </footer>
-        </aside>
+    <!-- Konten Menu Utama -->
+    <main id="menu-content" class="container mx-auto px-4 mt-6 pb-40">
+        <!-- Seksi-seksi Menu akan dimuat di sini oleh JavaScript -->
+    </main>
 
-        <!-- Konten Utama: Menu yang bisa di-slide -->
-        <main class="flex-1 overflow-hidden relative">
-            <div id="menu-track" class="flex h-full transition-transform duration-700 ease-in-out">
-                <!-- Halaman-halaman menu dimuat oleh JS -->
+    <!-- Floating Cart Bar -->
+    <div id="floating-cart" class="fixed bottom-0 left-0 right-0 p-4 transform translate-y-full transition-transform duration-300">
+        <div class="container mx-auto">
+            <button id="open-cart-button" class="w-full bg-brand-light-dark/70 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-4 flex justify-between items-center transition-transform duration-300 hover:scale-[1.02]">
+                <div class="flex items-center gap-3">
+                    <div id="item-count-badge" class="bg-brand-red text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
+                    <span class="font-semibold text-white">Lihat Pesanan</span>
+                </div>
+                <span id="total-price-bar" class="font-poppins font-bold text-lg text-white">Rp 0</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Modal Rincian Pesanan (Bottom Sheet) -->
+    <div id="order-modal" class="fixed inset-0 bg-black/60 flex flex-col justify-end z-50 invisible">
+        <div id="modal-content" class="bg-brand-light-dark w-full rounded-t-2xl p-6 transform translate-y-full transition-transform duration-300 ease-in-out">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-poppins font-bold text-xl text-white">Rincian Pesanan</h3>
+                <button id="close-modal-button" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
             </div>
-        </main>
-
+            <div id="modal-cart-items" class="space-y-4 max-h-[40vh] overflow-y-auto pr-2">
+                <!-- Rincian item di modal akan dimuat di sini -->
+            </div>
+            <div class="mt-6 pt-6 border-t border-white/10">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-semibold text-gray-300">Total Pembayaran</span>
+                    <span id="modal-total-price" class="font-poppins font-bold text-2xl text-white">Rp 0</span>
+                </div>
+                <button id="order-button" class="w-full mt-2 bg-brand-red text-white font-bold py-4 rounded-lg hover:bg-red-600 transition-transform duration-200 hover:scale-[1.02] disabled:bg-gray-600 disabled:opacity-50">
+                    Pesan via WhatsApp
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- Keranjang Pesanan (Glassmorphism) -->
-    <div id="order-summary" class="fixed bottom-4 left-4 right-4 lg:left-auto lg:w-[420px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6 transform translate-y-[150%] transition-transform duration-500 z-50">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="font-poppins font-bold text-xl text-white">Keranjang Anda</h3>
-            <div id="item-count-badge" class="bg-brand-red text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full transition-transform duration-300">0</div>
-        </div>
-        
-        <div id="cart-items" class="space-y-3 max-h-[15vh] overflow-y-auto pr-2">
-             <p id="empty-cart-message" class="text-gray-400 text-center py-4">Pilih menu untuk memulai.</p>
-        </div>
-
-        <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
-            <span class="font-semibold text-gray-300">Total</span>
-            <span id="total-price" class="font-poppins font-bold text-2xl text-white">Rp 0</span>
-        </div>
-        <button id="order-button" class="w-full mt-4 bg-brand-red text-white font-bold py-4 rounded-lg hover:bg-red-600 transition-all duration-300 transform hover:scale-[1.03] disabled:bg-gray-600 disabled:opacity-50 disabled:scale-100">
-            Pesan Sekarang
-        </button>
-    </div>
-
+    <!-- Script Utama -->
     <script src="assets/js/script.js"></script>
 </body>
 </html>
