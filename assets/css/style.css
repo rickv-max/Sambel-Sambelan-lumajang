@@ -75,11 +75,8 @@
 
 /* Styling untuk Section Header yang Sticky */
 .section-header {
-    position: sticky;
-    top: 115px; /* Sesuaikan jika tinggi header berubah */
     z-index: 30;
     background-color: #252323; /* brand-charcoal */
-    padding-bottom: 0.5rem;
 }
 
 /* Styling Tombol Order dengan Gradasi */
