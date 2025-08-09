@@ -1,34 +1,29 @@
-/* Custom Checkbox Styling */
-.menu-item input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s ease-in-out;
-    flex-shrink: 0; /* Mencegah checkbox menyusut */
+/* Styling untuk menyembunyikan panah default di input number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.menu-item input[type="checkbox"]:hover {
-    border-color: #FF7A00; /* brand-orange */
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
-.menu-item input[type="checkbox"]:checked {
-    background-color: #D9230F; /* brand-red */
-    border-color: #D9230F;
+/* Styling kustom untuk quantity selector agar lebih menarik */
+.quantity-selector button {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
 }
 
-.menu-item input[type="checkbox"]:checked::after {
-    content: '\2713'; /* Checkmark symbol */
-    font-size: 16px;
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.quantity-selector input {
+    width: 40px;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* Animasi untuk order summary */
