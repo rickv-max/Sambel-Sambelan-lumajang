@@ -22,10 +22,11 @@
                         'poppins': ['Poppins', 'sans-serif']
                     },
                     colors: { 
-                        'brand-black': '#000000',
-                        'brand-red': '#CF0A0A',
-                        'brand-accent': '#DC5F00',
-                        'brand-gray': '#EEEEEE'
+                        'brand-charcoal': '#252323',
+                        'brand-slate': '#2E2B2B',
+                        'brand-cream': '#F3EFEA',
+                        'brand-red': '#E0412B',
+                        'brand-gold': '#FFB838'
                     }
                 }
             }
@@ -33,10 +34,10 @@
     </script>
 </head>
 
-<body class="bg-brand-black text-brand-gray font-poppins">
+<body class="bg-brand-charcoal text-brand-cream font-poppins">
 
     <!-- Header & Navigasi Kategori Sticky -->
-    <header class="sticky top-0 z-40 bg-brand-black/80 backdrop-blur-lg">
+    <header class="sticky top-0 z-40 bg-brand-charcoal/80 backdrop-blur-lg">
         <div class="container mx-auto px-4 pt-5 pb-1">
             <h1 class="font-extrabold text-3xl text-white">Sambelan<span class="text-brand-red">.</span></h1>
         </div>
@@ -49,19 +50,19 @@
     <!-- Floating Cart Bar -->
     <div id="floating-cart" class="fixed bottom-0 left-0 right-0 p-4 transform translate-y-full transition-transform duration-300 z-40">
         <div class="container mx-auto">
-            <button id="open-cart-button" class="w-full bg-brand-red/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-4 flex justify-between items-center transition-transform duration-300 hover:scale-[1.02]">
+            <button id="open-cart-button" class="w-full bg-brand-slate/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-4 flex justify-between items-center transition-transform duration-300 hover:scale-[1.02]">
                 <div class="flex items-center gap-3">
-                    <div id="item-count-badge" class="bg-brand-accent text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
-                    <span class="font-semibold text-brand-gray">Lihat Pesanan</span>
+                    <div id="item-count-badge" class="bg-brand-red text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
+                    <span class="font-semibold text-brand-cream">Lihat Pesanan</span>
                 </div>
-                <span id="total-price-bar" class="font-bold text-lg text-brand-gray">Rp 0</span>
+                <span id="total-price-bar" class="font-bold text-lg text-brand-cream">Rp 0</span>
             </button>
         </div>
     </div>
     
     <!-- Modal Rincian Pesanan (Bottom Sheet) -->
     <div id="order-modal" class="fixed inset-0 bg-black/60 flex flex-col justify-end z-50 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div id="modal-content" class="bg-black border-t border-gray-700 w-full rounded-t-2xl p-6 transform translate-y-full transition-transform duration-300 ease-in-out">
+        <div id="modal-content" class="bg-brand-slate border-t border-gray-700 w-full rounded-t-2xl p-6 transform translate-y-full transition-transform duration-300 ease-in-out">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="font-bold text-xl text-white">Rincian Pesanan</h3>
                 <button id="close-modal-button" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
@@ -69,10 +70,10 @@
             <div id="modal-cart-items" class="space-y-4 max-h-[40vh] overflow-y-auto pr-2"></div>
             <div class="mt-6 pt-6 border-t border-gray-700">
                 <div class="flex justify-between items-center mb-4">
-                    <span class="font-semibold text-gray-300">Total Pembayaran</span>
+                    <span class="font-semibold text-gray-400">Total Pembayaran</span>
                     <span id="modal-total-price" class="font-bold text-2xl text-white">Rp 0</span>
                 </div>
-                <button id="order-button" class="w-full mt-2 bg-brand-red text-white font-bold py-4 rounded-lg hover:bg-red-800 transition-all duration-300 disabled:bg-gray-600 disabled:opacity-50">
+                <button id="order-button" class="order-button-animated w-full mt-2 text-white font-bold py-4 rounded-lg transition-all duration-300 disabled:bg-gray-600 disabled:opacity-50">
                     Pesan via WhatsApp
                 </button>
             </div>
