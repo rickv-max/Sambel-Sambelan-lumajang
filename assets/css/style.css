@@ -1,47 +1,61 @@
-/* Mengatur scrollbar agar lebih minimalis & sesuai tema gelap */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+/* Styling scrollbar minimalis & modern */
+::-webkit-scrollbar { 
+    width: 6px; 
+}
+::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb { 
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 10px; 
+}
+::-webkit-scrollbar-thumb:hover { 
+    background: rgba(255, 255, 255, 0.3); 
+}
 
-/* Styling untuk menyembunyikan panah default di input number */
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-input[type=number] { -moz-appearance: textfield; }
+/* Menyembunyikan scrollbar untuk navigasi chips di mobile */
+.category-chips-container::-webkit-scrollbar { 
+    display: none; 
+}
+.category-chips-container { 
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
 
-/* Styling canggih untuk Navigasi Kategori */
-.category-link {
-    position: relative;
+/* Styling untuk Navigasi Kategori "Chips" */
+.category-chip {
+    scroll-snap-align: start;
     transition: all 0.3s ease;
-    transform: translateX(0);
 }
-.category-link:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    transform: translateX(5px);
-}
-/* Efek GLOW saat aktif */
-.category-link.active {
+.category-chip.active {
+    background-color: #EF4444; /* brand-red */
     color: white;
-    background-color: rgba(239, 68, 68, 0.1); /* bg-brand-red/10 */
-    box-shadow: inset 3px 0 0 0 #EF4444, 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
-/* Animasi untuk memunculkan item menu secara bertingkat */
+/* Animasi Staggered untuk item menu saat masuk viewport */
 @keyframes fadeInSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    from { 
+        opacity: 0; 
+        transform: translateY(15px); 
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
     }
 }
 .menu-item {
-    animation: fadeInSlideUp 0.5s ease-out forwards;
-    opacity: 0; /* Mulai dari transparan */
+    opacity: 0; /* Mulai dari transparan, JS akan trigger animasi */
 }
 
-/* Animasi untuk keranjang pesanan */
-#order-summary.visible {
+/* Animasi untuk Modal/Bottom Sheet */
+#order-modal.visible {
+    visibility: visible;
+}
+#order-modal.visible #modal-content {
+    transform: translateY(0);
+}
+
+/* Animasi untuk Floating Cart Bar */
+#floating-cart.visible {
     transform: translateY(0);
 }
