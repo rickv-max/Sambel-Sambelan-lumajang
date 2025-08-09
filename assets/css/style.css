@@ -8,7 +8,7 @@
 .category-chips-container::-webkit-scrollbar { display: none; }
 .category-chips-container { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Styling "Chips" - Tema Moka */
+/* Styling "Chips" - Tema Moka (WARNA DIPERBARUI) */
 .category-chip {
     scroll-snap-align: start;
     transition: all 0.3s ease;
@@ -16,7 +16,7 @@
     color: #30373D; /* moka-dark */
 }
 .category-chip.active {
-    background-color: #0099D6; /* moka-blue */
+    background-color: #1E3A8A; /* moka-blue (BIRU TUA) */
     color: white;
     font-weight: 600;
 }
@@ -46,7 +46,7 @@
     background-color: rgba(247, 249, 252, 0.85); /* moka-bg */
 }
 
-/* Gaya untuk Fitur Pencarian (Tema Moka) */
+/* Gaya untuk Fitur Pencarian (WARNA DIPERBARUI) */
 .search-input {
     background-color: white;
     border: 1px solid #E4E8EC; /* moka-light-gray */
@@ -58,11 +58,11 @@
 }
 .search-input:focus {
     outline: none;
-    border-color: #0099D6; /* moka-blue */
-    box-shadow: 0 0 0 2px rgba(0, 153, 214, 0.2);
+    border-color: #1E3A8A; /* moka-blue (BIRU TUA) */
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
 }
 .category-badge {
-    background-color: #0099D6; /* moka-blue */
+    background-color: #1E3A8A; /* moka-blue (BIRU TUA) */
     color: white;
     font-size: 0.7rem;
     padding: 2px 8px;
