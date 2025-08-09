@@ -60,7 +60,18 @@
     transform: translateY(0);
 }
 
-/* == BAGIAN PERBAIKAN: Mencegah Double-Tap Zoom == */
+/* Mencegah Double-Tap Zoom pada tombol kuantitas */
 .quantity-selector button {
     touch-action: manipulation;
+}
+
+/* Styling untuk Section Header yang Sticky */
+.section-header {
+    position: sticky;
+    /* Menempel di bawah header utama (tinggi header + nav-chips) */
+    /* Sesuaikan nilai 'top' ini jika tinggi header berubah */
+    top: 115px; 
+    z-index: 30;
+    /* Memberi background agar konten di bawahnya tidak terlihat saat scroll */
+    background-color: #18181b; /* brand-dark */
 }
