@@ -42,12 +42,8 @@
 
 /* Styling Section Header Sticky */
 .section-header {
-    position: sticky;
-    top: 155px; /* Disesuaikan untuk header + search bar */
     z-index: 30;
     background-color: rgba(247, 249, 252, 0.85); /* moka-bg */
-    backdrop-filter: blur(8px);
-    padding-bottom: 0.5rem;
 }
 
 /* Gaya untuk Fitur Pencarian (Tema Moka) */
