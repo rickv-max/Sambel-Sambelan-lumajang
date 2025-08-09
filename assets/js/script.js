@@ -187,6 +187,4 @@ document.addEventListener('DOMContentLoaded', function() {
     renderMenuAndNav();
     initObservers();
     updateOrder();
-});```
-
-Setelah Anda mengganti ketiga file ini, saya jamin website akan berjalan dengan sempurna, sesuai dengan desain "Subtle Grit" yang telah kita setujui. Sekali lagi, terima kasih atas kesabaran Anda yang luar biasa.
+});
