@@ -1,15 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // --- Referensi Elemen DOM ---
     const menuContainer = document.getElementById('menu-container');
     const orderSummary = document.getElementById('order-summary');
     const itemCountSpan = document.getElementById('item-count');
     const totalPriceSpan = document.getElementById('total-price');
     const orderButton = document.getElementById('order-button');
-    
-    const whatsappNumber = '6281336777726'; // Nomor WhatsApp Admin
+    const whatsappNumber = '6281336777726';
 
-    // --- DATABASE MENU LENGKAP ---
-    // Transkripsi akurat dari gambar menu yang Anda berikan
+    // --- Database Menu (Tetap sama) ---
     const menuData = {
         "MENU KOMPLIT": {
             note: "Sudah Include Nasi Putih",
@@ -27,73 +26,42 @@ document.addEventListener('DOMContentLoaded', function() {
         "LAUK": {
             note: "Belum Include Nasi Putih",
             items: [
-                { name: "1 Ekor Ayam Ingkung Kampung", price: 85000 },
-                { name: "Ayam Goreng Kremes (Paha Potong)", price: 15000 },
-                { name: "Ayam Goreng Kremes Kampung (Paha/Dada)", price: 25000 },
-                { name: "Bebek Goreng (Paha/Dada)", price: 30000 },
-                { name: "Ayam Bakar Kampung (Paha/Dada)", price: 30000 },
-                { name: "Burung Dara", price: 36000 },
-                { name: "Usus Ayam", price: 10000 },
-                { name: "Kulit Ayam", price: 12000 },
-                { name: "Ceker Ayam", price: 15000 },
-                { name: "Kepala Ayam isi 4", price: 9000 },
-                { name: "Kepala Bebek isi 3", price: 15000 },
-                { name: "Babat", price: 16000 },
-                { name: "Kikil", price: 15000 },
-                { name: "Nila", price: 18000 },
-                { name: "Lele isi 2", price: 15000 },
-                { name: "Teri", price: 7000 },
-                { name: "Ikan Asin", price: 10000 },
-                { name: "Tahu Tempe", price: 6000 },
-                { name: "Sop Buntut", price: 45000 },
-                { name: "Iga Bakar", price: 45000 },
-                { name: "Cumi Goreng", price: 20000 },
-                { name: "Udang Goreng", price: 17000 },
-                { name: "Nasi Putih", price: 5000 },
+                { name: "1 Ekor Ayam Ingkung Kampung", price: 85000 }, { name: "Ayam Goreng Kremes (Paha Potong)", price: 15000 },
+                { name: "Ayam Goreng Kremes Kampung (Paha/Dada)", price: 25000 }, { name: "Bebek Goreng (Paha/Dada)", price: 30000 },
+                { name: "Ayam Bakar Kampung (Paha/Dada)", price: 30000 }, { name: "Burung Dara", price: 36000 },
+                { name: "Usus Ayam", price: 10000 }, { name: "Kulit Ayam", price: 12000 }, { name: "Ceker Ayam", price: 15000 },
+                { name: "Kepala Ayam isi 4", price: 9000 }, { name: "Kepala Bebek isi 3", price: 15000 }, { name: "Babat", price: 16000 },
+                { name: "Kikil", price: 15000 }, { name: "Nila", price: 18000 }, { name: "Lele isi 2", price: 15000 },
+                { name: "Teri", price: 7000 }, { name: "Ikan Asin", price: 10000 }, { name: "Tahu Tempe", price: 6000 },
+                { name: "Sop Buntut", price: 45000 }, { name: "Iga Bakar", price: 45000 }, { name: "Cumi Goreng", price: 20000 },
+                { name: "Udang Goreng", price: 17000 }, { name: "Nasi Putih", price: 5000 },
             ]
         },
         "SAYUR": {
             note: null,
-            items: [
-                { name: "Tumis Kangkung Polos", price: 10000 },
-                { name: "Tumis Tauge Polos", price: 10000 },
-                { name: "Tumis Tauge Teri Medan", price: 15000 },
-                { name: "Sayur Asem", price: 9000 },
-            ]
+            items: [ { name: "Tumis Kangkung Polos", price: 10000 }, { name: "Tumis Tauge Polos", price: 10000 }, { name: "Tumis Tauge Teri Medan", price: 15000 }, { name: "Sayur Asem", price: 9000 }, ]
         },
         "SAMBELAN": {
             note: "Belum Include Nasi Putih",
             items: [
-                { name: "Sambal Terasi Segar", price: 5000 },
-                { name: "Sambal Terasi Matang", price: 4500 },
-                { name: "Sambal Tempong", price: 4500 },
-                { name: "Sambal Kecap", price: 4000 },
-                { name: "Sambal Thailand", price: 6000 },
-                { name: "Sambal Dabu - Dabu", price: 6000 },
-                { name: "Sambal Tahu Tempe", price: 8000 },
-                { name: "Sambal Bakar", price: 6000 },
-                { name: "Sambal Bakar Kikil", price: 14000 },
-                { name: "Sambal Bakar Teri", price: 10000 },
-                { name: "Sambal Bakar Udang", price: 17000 },
-                { name: "Sambal Bakar Cumi", price: 17000 },
+                { name: "Sambal Terasi Segar", price: 5000 }, { name: "Sambal Terasi Matang", price: 4500 },
+                { name: "Sambal Tempong", price: 4500 }, { name: "Sambal Kecap", price: 4000 },
+                { name: "Sambal Thailand", price: 6000 }, { name: "Sambal Dabu - Dabu", price: 6000 },
+                { name: "Sambal Tahu Tempe", price: 8000 }, { name: "Sambal Bakar", price: 6000 },
+                { name: "Sambal Bakar Kikil", price: 14000 }, { name: "Sambal Bakar Teri", price: 10000 },
+                { name: "Sambal Bakar Udang", price: 17000 }, { name: "Sambal Bakar Cumi", price: 17000 },
                 { name: "Sambal Bakar Babat", price: 16000 },
             ]
         },
         "CHINESE FOOD & SEAFOOD": {
             note: null,
             items: [
-                { name: "Nasi Hainan Ayam Panggang", price: 32000 },
-                { name: "Nasi Hainan Ayam Rebus", price: 30000 },
-                { name: "Ayam Panggang 1 Ekor", price: 110000 },
-                { name: "Ayam Panggang 1/2 Ekor", price: 65000 },
-                { name: "Ayam Rebus 1 Ekor", price: 95000 },
-                { name: "Ayam Rebus 1/2 Ekor", price: 45000 },
-                { name: "Gurami Jimbaran Besar", price: 75000 },
-                { name: "Gurami Jimbaran Sedang", price: 6000 },
-                { name: "Gurami Goreng Dabu - Dabu Besar", price: 75000 },
-                { name: "Gurami Goreng Dabu - Dabu Sedang", price: 60000 },
-                { name: "Udang Bakar Jimbaran", price: 40000 },
-                { name: "Kerang Bakar Jimbaran", price: 40000 },
+                { name: "Nasi Hainan Ayam Panggang", price: 32000 }, { name: "Nasi Hainan Ayam Rebus", price: 30000 },
+                { name: "Ayam Panggang 1 Ekor", price: 110000 }, { name: "Ayam Panggang 1/2 Ekor", price: 65000 },
+                { name: "Ayam Rebus 1 Ekor", price: 95000 }, { name: "Ayam Rebus 1/2 Ekor", price: 45000 },
+                { name: "Gurami Jimbaran Besar", price: 75000 }, { name: "Gurami Jimbaran Sedang", price: 60000 },
+                { name: "Gurami Goreng Dabu - Dabu Besar", price: 75000 }, { name: "Gurami Goreng Dabu - Dabu Sedang", price: 60000 },
+                { name: "Udang Bakar Jimbaran", price: 40000 }, { name: "Kerang Bakar Jimbaran", price: 40000 },
             ]
         },
         "MINUMAN": {
@@ -119,32 +87,31 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         }
     };
-    
-    // Fungsi untuk memformat angka menjadi Rupiah
-    const formatRupiah = (number) => {
-        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
-    };
 
-    // Fungsi untuk membuat & menampilkan menu di HTML
+    const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+
     function renderMenu() {
         for (const category in menuData) {
             const categoryData = menuData[category];
             const categoryDiv = document.createElement('div');
             categoryDiv.className = 'bg-white p-6 rounded-xl shadow-md';
-            
-            let itemsHTML = '';
-            categoryData.items.forEach((item, index) => {
+
+            let itemsHTML = categoryData.items.map((item, index) => {
                 const priceFormatted = (item.price / 1000) + 'K';
-                itemsHTML += `
-                    <label for="item-${category}-${index}" class="menu-item flex items-center justify-between p-3 border-b border-gray-100 last:border-b-0 hover:bg-brand-cream rounded-lg cursor-pointer transition-colors">
-                        <div class="flex items-center">
-                            <input type="checkbox" id="item-${category}-${index}" data-name="${item.name}" data-price="${item.price}" class="mr-4">
-                            <span class="text-gray-800">${item.name}</span>
+                return `
+                    <div class="menu-item flex items-center justify-between p-3 border-b border-gray-100 last:border-b-0">
+                        <div>
+                            <p class="font-semibold text-gray-800">${item.name}</p>
+                            <p class="text-sm text-brand-orange">${priceFormatted}</p>
                         </div>
-                        <span class="font-bold text-brand-dark">${priceFormatted}</span>
-                    </label>
+                        <div class="quantity-selector flex items-center border border-gray-300 rounded-lg">
+                            <button class="quantity-minus bg-gray-200 text-gray-700 rounded-l-md hover:bg-gray-300 transition-colors" data-name="${item.name}" data-price="${item.price}">-</button>
+                            <input type="number" class="quantity-input w-12 text-center font-bold bg-white focus:outline-none" value="0" min="0" data-name="${item.name}" data-price="${item.price}">
+                            <button class="quantity-plus bg-gray-200 text-gray-700 rounded-r-md hover:bg-gray-300 transition-colors" data-name="${item.name}" data-price="${item.price}">+</button>
+                        </div>
+                    </div>
                 `;
-            });
+            }).join('');
 
             categoryDiv.innerHTML = `
                 <h3 class="font-poppins font-bold text-2xl text-brand-brown mb-1">${category}</h3>
@@ -155,46 +122,76 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fungsi untuk mengupdate keranjang pesanan
     function updateOrder() {
         const selectedItems = [];
+        let totalItems = 0;
         let totalPrice = 0;
-        
-        const checkboxes = document.querySelectorAll('.menu-item input[type="checkbox"]:checked');
-        
-        checkboxes.forEach(checkbox => {
-            selectedItems.push({
-                name: checkbox.dataset.name,
-                price: parseInt(checkbox.dataset.price)
-            });
-            totalPrice += parseInt(checkbox.dataset.price);
+        const inputs = document.querySelectorAll('.quantity-input');
+
+        inputs.forEach(input => {
+            const quantity = parseInt(input.value);
+            if (quantity > 0) {
+                const price = parseInt(input.dataset.price);
+                selectedItems.push({
+                    name: input.dataset.name,
+                    price: price,
+                    quantity: quantity
+                });
+                totalItems += quantity;
+                totalPrice += price * quantity;
+            }
         });
 
-        itemCountSpan.textContent = selectedItems.length;
+        itemCountSpan.textContent = totalItems;
         totalPriceSpan.textContent = formatRupiah(totalPrice);
 
-        if (selectedItems.length > 0) {
+        if (totalItems > 0) {
             orderSummary.classList.add('visible');
             orderButton.disabled = false;
         } else {
             orderSummary.classList.remove('visible');
             orderButton.disabled = true;
         }
-        
         return selectedItems;
     }
 
-    // Fungsi untuk membuat link WhatsApp
+    function handleQuantityChange(event) {
+        const target = event.target;
+        
+        // Menangani klik tombol + dan -
+        if (target.matches('.quantity-plus') || target.matches('.quantity-minus')) {
+            const input = target.parentElement.querySelector('.quantity-input');
+            let currentValue = parseInt(input.value);
+            
+            if (target.matches('.quantity-plus')) {
+                currentValue++;
+            } else if (currentValue > 0) {
+                currentValue--;
+            }
+            input.value = currentValue;
+        }
+        
+        // Menangani input manual agar tidak negatif
+        if(target.matches('.quantity-input')) {
+            if(parseInt(target.value) < 0 || target.value === '') {
+                target.value = 0;
+            }
+        }
+        
+        updateOrder();
+    }
+    
     function generateWhatsAppLink() {
         const items = updateOrder();
         if (items.length === 0) return;
 
-        let message = "Halo Sambel Sambelan, saya mau pesan:\n\n";
         let totalPrice = 0;
+        let message = "Halo Sambel Sambelan, saya mau pesan:\n\n";
         
         items.forEach(item => {
-            message += `- ${item.name} (${formatRupiah(item.price)})\n`;
-            totalPrice += item.price;
+            const subtotal = item.price * item.quantity;
+            message += `- ${item.name} x ${item.quantity} (${formatRupiah(subtotal)})\n`;
+            totalPrice += subtotal;
         });
 
         message += `\n*Total Pesanan: ${formatRupiah(totalPrice)}*`;
@@ -204,13 +201,11 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
     }
 
-    // --- EVENT LISTENERS ---
-    // Update keranjang setiap kali ada item dicentang/dihapus centangnya
-    menuContainer.addEventListener('change', updateOrder);
-
-    // Kirim pesanan saat tombol di-klik
+    // --- Event Listeners ---
+    menuContainer.addEventListener('click', handleQuantityChange);
+    menuContainer.addEventListener('input', handleQuantityChange); // Untuk handle ketik manual
     orderButton.addEventListener('click', generateWhatsAppLink);
     
-    // --- INISIALISASI ---
+    // --- Inisialisasi ---
     renderMenu();
 });
