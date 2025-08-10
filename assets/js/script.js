@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // --- Referensi Elemen DOM & Konstanta ---
+    const bestSellerSection = document.getElementById('best-seller-section');
+    const fullCatalogHeader = document.getElementById('full-catalog-header');
     const categoryNav = document.getElementById('category-nav');
     const menuContent = document.getElementById('menu-content');
     const searchInput = document.getElementById('search-input');
@@ -17,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const whatsappNumber = '6281336777726';
 
     const menuData = {
-        "Menu Komplit": { note: "Sudah Include Nasi Putih", items: [ { name: "Nasi Ayam Kremes (Paha Potong)", price: 20000 }, { name: "Nasi Ayam Kremes Kampung (Paha/Dada)", price: 30000 }, { name: "Nasi Tempong Ayam Kampung (Paha/Dada)", price: 25000 }, { name: "Nasi Tempong Ayam Potong (Paha)", price: 25000 }, { name: "Nasi Tempong Polos", price: 12000 }, { name: "Nasi Garang Asem (Paha/Dada)", price: 30000 }, { name: "Nasi Ikan Pe Goreng", price: 16000 }, { name: "Nasi Ikan Pe Kuah", price: 18000 }, { name: "Nasi Ayam Bakar Kampung (Paha/Dada)", price: 35000 }, ] },
-        "Lauk": { note: "Belum Include Nasi Putih", items: [ { name: "1 Ekor Ayam Ingkung Kampung", price: 85000 }, { name: "Ayam Goreng Kremes (Paha Potong)", price: 15000 }, { name: "Ayam Goreng Kremes Kampung (Paha/Dada)", price: 25000 }, { name: "Bebek Goreng (Paha/Dada)", price: 30000 }, { name: "Ayam Bakar Kampung (Paha/Dada)", price: 30000 }, { name: "Burung Dara", price: 36000 }, { name: "Usus Ayam", price: 10000 }, { name: "Kulit Ayam", price: 12000 }, { name: "Ceker Ayam", price: 15000 }, { name: "Kepala Ayam isi 4", price: 9000 }, { name: "Kepala Bebek isi 3", price: 15000 }, { name: "Babat", price: 16000 }, { name: "Kikil", price: 15000 }, { name: "Nila", price: 18000 }, { name: "Lele isi 2", price: 15000 }, { name: "Teri", price: 7000 }, { name: "Ikan Asin", price: 10000 }, { name: "Tahu Tempe", price: 6000 }, { name: "Sop Buntut", price: 45000 }, { name: "Iga Bakar", price: 45000 }, { name: "Cumi Goreng", price: 20000 }, { name: "Udang Goreng", price: 17000 }, { name: "Nasi Putih", price: 5000 }, ] },
+        "Menu Komplit": { note: "Sudah Include Nasi Putih", items: [ { name: "Nasi Ayam Kremes (Paha Potong)", price: 20000, bestSeller: true, image: 'https://i.ibb.co/pzpB0s1/nasi-ayam-kremes.jpg' }, { name: "Nasi Ayam Kremes Kampung (Paha/Dada)", price: 30000 }, { name: "Nasi Tempong Ayam Kampung (Paha/Dada)", price: 25000, bestSeller: true, image: 'https://i.ibb.co/hR7w0YJ/nasi-tempong.jpg' }, { name: "Nasi Tempong Ayam Potong (Paha)", price: 25000 }, { name: "Nasi Tempong Polos", price: 12000 }, { name: "Nasi Garang Asem (Paha/Dada)", price: 30000 }, { name: "Nasi Ikan Pe Goreng", price: 16000 }, { name: "Nasi Ikan Pe Kuah", price: 18000 }, { name: "Nasi Ayam Bakar Kampung (Paha/Dada)", price: 35000 }, ] },
+        "Lauk": { note: "Belum Include Nasi Putih", items: [ { name: "1 Ekor Ayam Ingkung Kampung", price: 85000, bestSeller: true, image: 'https://i.ibb.co/C0dYpmy/ayam-ingkung.jpg' }, { name: "Ayam Goreng Kremes (Paha Potong)", price: 15000 }, { name: "Ayam Goreng Kremes Kampung (Paha/Dada)", price: 25000 }, { name: "Bebek Goreng (Paha/Dada)", price: 30000, bestSeller: true, image: 'https://i.ibb.co/z5pBJW5/bebek-goreng.jpg' }, { name: "Ayam Bakar Kampung (Paha/Dada)", price: 30000 }, { name: "Burung Dara", price: 36000 }, { name: "Usus Ayam", price: 10000 }, { name: "Kulit Ayam", price: 12000 }, { name: "Ceker Ayam", price: 15000 }, { name: "Kepala Ayam isi 4", price: 9000 }, { name: "Kepala Bebek isi 3", price: 15000 }, { name: "Babat", price: 16000 }, { name: "Kikil", price: 15000 }, { name: "Nila", price: 18000 }, { name: "Lele isi 2", price: 15000 }, { name: "Teri", price: 7000 }, { name: "Ikan Asin", price: 10000 }, { name: "Tahu Tempe", price: 6000 }, { name: "Sop Buntut", price: 45000 }, { name: "Iga Bakar", price: 45000 }, { name: "Cumi Goreng", price: 20000 }, { name: "Udang Goreng", price: 17000 }, { name: "Nasi Putih", price: 5000 }, ] },
         "Sayur": { note: null, items: [ { name: "Tumis Kangkung Polos", price: 10000 }, { name: "Tumis Tauge Polos", price: 10000 }, { name: "Tumis Tauge Teri Medan", price: 15000 }, { name: "Sayur Asem", price: 9000 }, ] },
         "Sambelan": { note: "Belum Include Nasi Putih", items: [ { name: "Sambal Terasi Segar", price: 5000 }, { name: "Sambal Terasi Matang", price: 4500 }, { name: "Sambal Tempong", price: 4500 }, { name: "Sambal Kecap", price: 4000 }, { name: "Sambal Thailand", price: 6000 }, { name: "Sambal Dabu - Dabu", price: 6000 }, { name: "Sambal Tahu Tempe", price: 8000 }, { name: "Sambal Bakar", price: 6000 }, { name: "Sambal Bakar Kikil", price: 14000 }, { name: "Sambal Bakar Teri", price: 10000 }, { name: "Sambal Bakar Udang", price: 17000 }, { name: "Sambal Bakar Cumi", price: 17000 }, { name: "Sambal Bakar Babat", price: 16000 }, ] },
         "Chinese & Seafood": { note: null, items: [ { name: "Nasi Hainan Ayam Panggang", price: 32000 }, { name: "Nasi Hainan Ayam Rebus", price: 30000 }, { name: "Ayam Panggang 1 Ekor", price: 110000 }, { name: "Ayam Panggang 1/2 Ekor", price: 65000 }, { name: "Ayam Rebus 1 Ekor", price: 95000 }, { name: "Ayam Rebus 1/2 Ekor", price: 45000 }, { name: "Gurami Jimbaran Besar", price: 75000 }, { name: "Gurami Jimbaran Sedang", price: 60000 }, { name: "Gurami Goreng Dabu - Dabu Besar", price: 75000 }, { name: "Gurami Goreng Dabu - Dabu Sedang", price: 60000 }, { name: "Udang Bakar Jimbaran", price: 40000 }, { name: "Kerang Bakar Jimbaran", price: 40000 }, ] },
@@ -35,6 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
         allMenuItems = Object.entries(menuData).flatMap(([category, data]) => 
             data.items.map(item => ({ ...item, category }))
         );
+    }
+
+    function renderBestSellers() {
+        const bestSellers = allMenuItems.filter(item => item.bestSeller);
+        if (bestSellers.length === 0) {
+            bestSellerSection.style.display = 'none';
+            return;
+        }
+        const itemsHTML = bestSellers.map(item => `
+            <div class="best-seller-card">
+                <img src="${item.image}" alt="${item.name}" class="item-image">
+                <div class="item-details">
+                    <p class="item-name text-moka-dark">${item.name}</p>
+                    <p class="item-price text-sm mt-1">${formatRupiah(item.price)}</p>
+                </div>
+            </div>
+        `).join('');
+        bestSellerSection.innerHTML = `
+            <h2 class="font-bold text-2xl text-moka-dark mb-4">Menu Andalan</h2>
+            <div class="grid grid-cols-2 gap-4">
+                ${itemsHTML}
+            </div>
+        `;
     }
     
     function renderMenuItem(item, isSearchResult = false) {
@@ -79,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h2 class="font-bold text-2xl text-moka-dark">${category}</h2>
                     ${data.note ? `<p class="text-moka-gray text-sm mt-1">${data.note}</p>` : ''}
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${itemsHTML}</div>
+                <div class="grid grid-cols-1 gap-3 pt-4">${itemsHTML}</div>
             `;
             menuContent.appendChild(section);
         });
@@ -87,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderSearchResults(results) {
-        searchResultsContainer.innerHTML = `<div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${results.map(item => renderMenuItem(item, true)).join('')}</div>`;
+        searchResultsContainer.innerHTML = `<div class="grid grid-cols-1 gap-3 pt-4">${results.map(item => renderMenuItem(item, true)).join('')}</div>`;
         initItemObservers(searchResultsContainer);
     }
 
@@ -130,17 +155,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleSearch(event) {
         const query = event.target.value.toLowerCase().trim();
+        const mainContentElements = [bestSellerSection, menuContent, categoryNav, fullCatalogHeader];
+
         if (query.length === 0) {
-            menuContent.classList.remove('hidden');
-            categoryNav.classList.remove('hidden');
+            mainContentElements.forEach(el => el.classList.remove('hidden'));
             searchResultsContainer.classList.add('hidden');
             noResultsMessage.classList.add('hidden');
             return;
         }
+
         const filteredResults = allMenuItems.filter(item => item.name.toLowerCase().includes(query));
-        menuContent.classList.add('hidden');
-        categoryNav.classList.add('hidden');
+        mainContentElements.forEach(el => el.classList.add('hidden'));
         searchResultsContainer.classList.remove('hidden');
+
         if (filteredResults.length > 0) {
             renderSearchResults(filteredResults);
             noResultsMessage.classList.add('hidden');
@@ -174,12 +201,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { rootMargin: "-30% 0px -70% 0px" });
 
     function initItemObservers(container) {
-        const items = container.querySelectorAll('.menu-item');
+        const items = container.querySelectorAll('.menu-item, .best-seller-card');
         items.forEach(item => itemObserver.observe(item));
     }
 
     function initObservers() {
-        initItemObservers(menuContent);
+        initItemObservers(document);
         document.querySelectorAll('.menu-section').forEach(section => sectionObserver.observe(section));
     }
 
@@ -209,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             }
         }
+
         const quantityBtn = e.target.closest('.quantity-plus, .quantity-minus');
         if (quantityBtn) {
             const input = quantityBtn.parentElement.querySelector('input');
@@ -220,12 +248,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navigator.vibrate) navigator.vibrate(50);
             updateOrder();
         }
+
         if (e.target.closest('#open-cart-button')) {
             toggleModal(true);
         }
+
         if (e.target.closest('#close-modal-button') || e.target === orderModal) {
             toggleModal(false);
         }
+
         if (e.target === orderButton) {
             generateWhatsAppLink();
         }
@@ -248,6 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Inisialisasi Aplikasi ---
     flattenMenuItems();
+    renderBestSellers();
     renderMenuAndNav();
     updateOrder();
 });
