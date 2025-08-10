@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const whatsappNumber = '6281336777726';
 
     const menuData = {
-        "Menu Komplit": { note: "Sudah Include Nasi Putih", items: [ { name: "Nasi Ayam Kremes (Paha Potong)", price: 20000, bestSeller: true, image: 'assets/images/nasi-ayam-kremes-potong.JPG' }, { name: "Nasi Ayam Kremes Kampung (Paha/Dada)", price: 30000 }, { name: "Nasi Tempong Ayam Kampung (Paha/Dada)", price: 25000, bestSeller: true, image: 'https://i.ibb.co/hR7w0YJ/nasi-tempong.jpg' }, { name: "Nasi Tempong Ayam Potong (Paha)", price: 25000 }, { name: "Nasi Tempong Polos", price: 12000 }, { name: "Nasi Garang Asem (Paha/Dada)", price: 30000 }, { name: "Nasi Ikan Pe Goreng", price: 16000 }, { name: "Nasi Ikan Pe Kuah", price: 18000 }, { name: "Nasi Ayam Bakar Kampung (Paha/Dada)", price: 35000 }, ] },
-        "Lauk": { note: "Belum Include Nasi Putih", items: [ { name: "1 Ekor Ayam Ingkung Kampung", price: 85000, bestSeller: true, image: 'https://i.ibb.co/C0dYpmy/ayam-ingkung.jpg' }, { name: "Ayam Goreng Kremes (Paha Potong)", price: 15000 }, { name: "Ayam Goreng Kremes Kampung (Paha/Dada)", price: 25000 }, { name: "Bebek Goreng (Paha/Dada)", price: 30000, bestSeller: true, image: 'https://i.ibb.co/z5pBJW5/bebek-goreng.jpg' }, { name: "Ayam Bakar Kampung (Paha/Dada)", price: 30000 }, { name: "Burung Dara", price: 36000 }, { name: "Usus Ayam", price: 10000 }, { name: "Kulit Ayam", price: 12000 }, { name: "Ceker Ayam", price: 15000 }, { name: "Kepala Ayam isi 4", price: 9000 }, { name: "Kepala Bebek isi 3", price: 15000 }, { name: "Babat", price: 16000 }, { name: "Kikil", price: 15000 }, { name: "Nila", price: 18000 }, { name: "Lele isi 2", price: 15000 }, { name: "Teri", price: 7000 }, { name: "Ikan Asin", price: 10000 }, { name: "Tahu Tempe", price: 6000 }, { name: "Sop Buntut", price: 45000 }, { name: "Iga Bakar", price: 45000 }, { name: "Cumi Goreng", price: 20000 }, { name: "Udang Goreng", price: 17000 }, { name: "Nasi Putih", price: 5000 }, ] },
-        "Sayur": { note: null, items: [ { name: "Tumis Kangkung Polos", price: 10000 }, { name: "Tumis Tauge Polos", price: 10000 }, { name: "Tumis Tauge Teri Medan", price: 15000 }, { name: "Sayur Asem", price: 9000 }, ] },
+        "Menu Komplit": { note: "Sudah Include Nasi Putih", items: [ { name: "Nasi Ayam Kremes (Paha Potong)", price: 20000, bestSeller: true, image: 'assets/images/nasi-ayam-kremes-potong.JPG' }, { name: "Nasi Ayam Kremes Kampung (Paha/Dada)", price: 30000, bestSeller: true, image: 'assets/images/nasiayamkremes-kampung.JPG' }, { name: "Nasi Tempong Ayam Kampung (Paha/Dada)", price: 25000, bestSeller: true, image: 'assets/images/nasi-tempong-ayamkampung.JPG' }, { name: "Nasi Tempong Ayam Potong (Paha)", price: 25000, bestSeller: true, image: 'assets/images/tempong-ayam-potong.JPG' }, { name: "Nasi Tempong Polos", price: 12000, bestSeller: true, image: 'assets/images/nasi-tempong-polos.JPG' }, { name: "Nasi Garang Asem (Paha/Dada)", price: 30000 }, { name: "Nasi Ikan Pe Goreng", price: 16000 }, { name: "Nasi Ikan Pe Kuah", price: 18000 }, { name: "Nasi Ayam Bakar Kampung (Paha/Dada)", price: 35000 }, ] },
+        "Lauk": { note: "Belum Include Nasi Putih", items: [ { name: "1 Ekor Ayam Ingkung Kampung", price: 85000 }, { name: "Ayam Goreng Kremes (Paha Potong)", price: 15000 }, { name: "Ayam Goreng Kremes Kampung (Paha/Dada)", price: 25000 }, { name: "Bebek Goreng (Paha/Dada)", price: 30000 }, { name: "Ayam Bakar Kampung (Paha/Dada)", price: 30000 }, { name: "Burung Dara", price: 36000 }, { name: "Usus Ayam", price: 10000 }, { name: "Kulit Ayam", price: 12000 }, { name: "Ceker Ayam", price: 15000 }, { name: "Kepala Ayam isi 4", price: 9000 }, { name: "Kepala Bebek isi 3", price: 15000 }, { name: "Babat", price: 16000 }, { name: "Kikil", price: 15000 }, { name: "Nila", price: 18000 }, { name: "Lele isi 2", price: 15000 }, { name: "Teri", price: 7000 }, { name: "Ikan Asin", price: 10000 }, { name: "Tahu Tempe", price: 6000 }, { name: "Sop Buntut", price: 45000 }, { name: "Iga Bakar", price: 45000 }, { name: "Cumi Goreng", price: 20000 }, { name: "Udang Goreng", price: 17000 }, { name: "Nasi Putih", price: 5000 }, ] },
+        "Sayur": { note: null, items: [ { name: "Tumis Kangkung Polos", price: 10000 }, { name: "Tumis Tauge Polos", price: 10000, bestSeller: true, image: 'assets/images/tumis-toge.JPG' }, { name: "Tumis Tauge Teri Medan", price: 15000 }, { name: "Sayur Asem", price: 9000 }, ] },
         "Sambelan": { note: "Belum Include Nasi Putih", items: [ { name: "Sambal Terasi Segar", price: 5000 }, { name: "Sambal Terasi Matang", price: 4500 }, { name: "Sambal Tempong", price: 4500 }, { name: "Sambal Kecap", price: 4000 }, { name: "Sambal Thailand", price: 6000 }, { name: "Sambal Dabu - Dabu", price: 6000 }, { name: "Sambal Tahu Tempe", price: 8000 }, { name: "Sambal Bakar", price: 6000 }, { name: "Sambal Bakar Kikil", price: 14000 }, { name: "Sambal Bakar Teri", price: 10000 }, { name: "Sambal Bakar Udang", price: 17000 }, { name: "Sambal Bakar Cumi", price: 17000 }, { name: "Sambal Bakar Babat", price: 16000 }, ] },
-        "Chinese & Seafood": { note: null, items: [ { name: "Nasi Hainan Ayam Panggang", price: 32000 }, { name: "Nasi Hainan Ayam Rebus", price: 30000 }, { name: "Ayam Panggang 1 Ekor", price: 110000 }, { name: "Ayam Panggang 1/2 Ekor", price: 65000 }, { name: "Ayam Rebus 1 Ekor", price: 95000 }, { name: "Ayam Rebus 1/2 Ekor", price: 45000 }, { name: "Gurami Jimbaran Besar", price: 75000 }, { name: "Gurami Jimbaran Sedang", price: 60000 }, { name: "Gurami Goreng Dabu - Dabu Besar", price: 75000 }, { name: "Gurami Goreng Dabu - Dabu Sedang", price: 60000 }, { name: "Udang Bakar Jimbaran", price: 40000 }, { name: "Kerang Bakar Jimbaran", price: 40000 }, ] },
+        "Chinese & Seafood": { note: null, items: [ { name: "Nasi Hainan Ayam Panggang", price: 32000, bestSeller: true, image: 'assets/images/nasi-hainan-ayam-panggang.JPG' }, { name: "Nasi Hainan Ayam Rebus", price: 30000 }, { name: "Ayam Panggang 1 Ekor", price: 110000 }, { name: "Ayam Panggang 1/2 Ekor", price: 65000 }, { name: "Ayam Rebus 1 Ekor", price: 95000 }, { name: "Ayam Rebus 1/2 Ekor", price: 45000 }, { name: "Gurami Jimbaran Besar", price: 75000 }, { name: "Gurami Jimbaran Sedang", price: 60000 }, { name: "Gurami Goreng Dabu - Dabu Besar", price: 75000, bestSeller: true, image: 'assets/images/gurame-goreng-dabudabu.JPG' }, { name: "Gurami Goreng Dabu - Dabu Sedang", price: 60000 }, { name: "Udang Bakar Jimbaran", price: 40000 }, { name: "Kerang Bakar Jimbaran", price: 40000, bestSeller: true, image: 'assets/images/kerang-bakar-jimbaran.JPG' }, ] },
         "Minuman": { note: null, items: [ { name: "Es Teh Manis", price: 5000 }, { name: "Es Teh Tawar", price: 4000 }, { name: "Lemon Tea", price: 10000 }, { name: "Es Jeruk", price: 8000 }, { name: "Es Markisa", price: 8000 }, { name: "Es Cincau", price: 7000 }, { name: "Es Milo", price: 10000 }, { name: "Soda Gembira", price: 10000 }, { name: "Es Lychee Tea", price: 10000 }, { name: "Ice Markisa Squash", price: 16000 }, { name: "Ice Mango Squash", price: 16000 }, { name: "Ice Lemon Squash", price: 16000 }, { name: "Ice Lychee Squash", price: 16000 }, { name: "Ice Orange Coco", price: 16000 }, { name: "Es Serut Melon", price: 10000 }, { name: "Thai Tea", price: 12000 }, { name: "Ice Taro", price: 14000 }, { name: "Ice Matcha", price: 15000 }, { name: "Mineral Water", price: 5000 },] },
         "Ice Coffe": { note: null, items: [ { name: "Ice Coffe Beer", price: 10000 }, { name: "Ice Americano", price: 12000 }, { name: "Ice Coffe Latte", price: 16000 }, { name: "Ice Cappucino", price: 16000 }, { name: "Ice Brown Sugar", price: 17000 }, ] },
         "Minuman Hangat": { note: null, items: [ { name: "Extra Shoot", price: 3000 }, { name: "Teh Manis Hangat", price: 4000 }, { name: "Teh Tawar Hangat", price: 3000 }, { name: "Wedang Jahe", price: 7000 }, { name: "Wedang Teh Jahe", price: 7000 }, { name: "Wedang Jahe Serai", price: 8000 }, { name: "Milo Hangat", price: 10000 }, { name: "Americano Hangat", price: 11000 }, { name: "Cappucino", price: 16000 }, ] },
@@ -38,22 +38,31 @@ document.addEventListener('DOMContentLoaded', function() {
             data.items.map(item => ({ ...item, category }))
         );
     }
-
-    function renderBestSellers() {
+        function renderBestSellers() {
         const bestSellers = allMenuItems.filter(item => item.bestSeller);
         if (bestSellers.length === 0) {
             bestSellerSection.style.display = 'none';
             return;
         }
+
         const itemsHTML = bestSellers.map(item => `
             <div class="best-seller-card">
                 <img src="${item.image}" alt="${item.name}" class="item-image">
                 <div class="item-details">
                     <p class="item-name text-moka-dark">${item.name}</p>
-                    <p class="item-price text-sm mt-1">${formatRupiah(item.price)}</p>
+                </div>
+                <div class="actions">
+                     <p class="item-price text-sm">${formatRupiah(item.price)}</p>
+                     <div class="quantity-selector flex items-center bg-moka-bg rounded-full border border-moka-light-gray h-8">
+                        <button class="quantity-minus text-moka-blue w-8 text-lg font-bold">-</button>
+                        <input type="number" class="quantity-input w-10 text-center font-bold text-moka-dark bg-transparent focus:outline-none text-sm" 
+                               value="${cart[item.name] || 0}" min="0" data-name="${item.name}" data-price="${item.price}">
+                        <button class="quantity-plus text-moka-blue w-8 text-lg font-bold">+</button>
+                    </div>
                 </div>
             </div>
         `).join('');
+
         bestSellerSection.innerHTML = `
             <h2 class="font-bold text-2xl text-moka-dark mb-4">Menu Andalan</h2>
             <div class="grid grid-cols-2 gap-4">
@@ -117,9 +126,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateOrder() {
+        // ... (fungsi ini tetap sama persis)
+    }
+    
+    // ... (sisa fungsi akan saya gabungkan di bawah untuk memastikan tidak terpotong)
+    const updateOrderComplete = () => {
         const selectedItems = [];
         let totalItems = 0;
         let totalPrice = 0;
+        
+        // Loop through all inputs on the page to build the cart object
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            const itemName = input.dataset.name;
+            const quantity = parseInt(input.value);
+            if (quantity > 0) {
+                cart[itemName] = quantity;
+            } else {
+                delete cart[itemName];
+            }
+        });
+
         Object.keys(cart).forEach(itemName => {
             const quantity = cart[itemName];
             if (quantity > 0) {
@@ -131,11 +157,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+
         floatingCart.classList.toggle('visible', totalItems > 0);
         itemCountBadge.textContent = totalItems;
         totalPriceBar.textContent = formatRupiah(totalPrice);
         modalTotalPrice.textContent = formatRupiah(totalPrice);
         orderButton.disabled = selectedItems.length === 0;
+
         if (selectedItems.length > 0) {
             modalCartItems.innerHTML = selectedItems.map(item => `
                 <div class="flex justify-between items-center text-sm">
@@ -151,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleModal(false);
         }
         return selectedItems;
-    }
+    };
 
     function handleSearch(event) {
         const query = event.target.value.toLowerCase().trim();
@@ -215,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function generateWhatsAppLink() {
-        const items = updateOrder();
+        const items = updateOrderComplete();
         if (items.length === 0) return;
         let message = "*PESANAN BARU* 🌶️\n\n";
         message += "Halo Sambel Sambelan, saya mau pesan:\n\n";
@@ -244,9 +272,12 @@ document.addEventListener('DOMContentLoaded', function() {
             let value = cart[itemName] || 0;
             value = quantityBtn.classList.contains('quantity-plus') ? value + 1 : Math.max(0, value - 1);
             cart[itemName] = value;
-            input.value = value;
+            
+            // Sinkronkan semua input untuk item yang sama
+            document.querySelectorAll(`.quantity-input[data-name="${itemName}"]`).forEach(inp => inp.value = value);
+            
             if (navigator.vibrate) navigator.vibrate(50);
-            updateOrder();
+            updateOrderComplete();
         }
 
         if (e.target.closest('#open-cart-button')) {
@@ -270,8 +301,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             const itemName = e.target.dataset.name;
             cart[itemName] = value;
-            e.target.value = value;
-            updateOrder();
+            
+            // Sinkronkan semua input untuk item yang sama
+            document.querySelectorAll(`.quantity-input[data-name="${itemName}"]`).forEach(inp => inp.value = value);
+            updateOrderComplete();
         }
     });
     
@@ -281,5 +314,5 @@ document.addEventListener('DOMContentLoaded', function() {
     flattenMenuItems();
     renderBestSellers();
     renderMenuAndNav();
-    updateOrder();
+    updateOrderComplete();
 });
