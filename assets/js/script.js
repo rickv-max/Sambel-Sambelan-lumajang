@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.items.map(item => ({ ...item, category }))
         );
     }
-            function renderBestSellers() {
+                function renderBestSellers() {
         const bestSellers = allMenuItems.filter(item => item.bestSeller);
         if (bestSellers.length === 0) {
             bestSellerSection.style.display = 'none';
@@ -53,11 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="actions">
                      <p class="item-price text-sm">${formatRupiah(item.price)}</p>
-                     <div class="quantity-selector flex items-center bg-moka-bg rounded-full border border-moka-light-gray h-8">
-                        <button class="quantity-minus text-moka-blue w-8 text-lg font-bold">-</button>
-                        <input type="number" class="quantity-input w-10 text-center font-bold text-moka-dark bg-transparent focus:outline-none text-sm" 
+                     <div class="quantity-selector flex items-center bg-moka-bg rounded-full border border-moka-light-gray h-7">
+                        <button class="quantity-minus text-moka-blue w-7 text-base font-bold">-</button>
+                        <input type="number" class="quantity-input w-8 text-center font-bold text-moka-dark bg-transparent focus:outline-none text-xs" 
                                value="${cart[item.name] || 0}" min="0" data-name="${item.name}" data-price="${item.price}">
-                        <button class="quantity-plus text-moka-blue w-8 text-lg font-bold">+</button>
+                        <button class="quantity-plus text-moka-blue w-7 text-base font-bold">+</button>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         bestSellerSection.innerHTML = `
             <h2 class="font-bold text-2xl text-moka-dark mb-4">Menu Andalan</h2>
-            <!-- PERBAIKAN RESPONSIVITAS ADA DI SINI -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 ${itemsHTML}
             </div>
