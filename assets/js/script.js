@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="actions">
                      <p class="item-price text-sm">${formatRupiah(item.price)}</p>
                      <div class="quantity-selector flex items-center bg-moka-bg rounded-full border border-moka-light-gray h-7">
-                        <button class="quantity-minus text-moka-blue w-7 text-base font-bold">-</button>
+                        <button class="quantity-minus text-moka-blue w-6 text-base font-bold">-</button>
                         <input type="number" class="quantity-input w-8 text-center font-bold text-moka-dark bg-transparent focus:outline-none text-xs" 
                                value="${cart[item.name] || 0}" min="0" data-name="${item.name}" data-price="${item.price}">
                         <button class="quantity-plus text-moka-blue w-7 text-base font-bold">+</button>
