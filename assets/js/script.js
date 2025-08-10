@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.items.map(item => ({ ...item, category }))
         );
     }
-        function renderBestSellers() {
+            function renderBestSellers() {
         const bestSellers = allMenuItems.filter(item => item.bestSeller);
         if (bestSellers.length === 0) {
             bestSellerSection.style.display = 'none';
@@ -65,7 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         bestSellerSection.innerHTML = `
             <h2 class="font-bold text-2xl text-moka-dark mb-4">Menu Andalan</h2>
-            <div class="grid grid-cols-2 gap-4">
+            <!-- PERBAIKAN RESPONSIVITAS ADA DI SINI -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 ${itemsHTML}
             </div>
         `;
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
     
-    function renderMenuAndNav() {
+        function renderMenuAndNav() {
         menuContent.innerHTML = '';
         categoryNav.innerHTML = '';
         const chipsContainer = document.createElement('div');
@@ -108,20 +109,23 @@ document.addEventListener('DOMContentLoaded', function() {
             section.id = categoryId;
             section.className = 'menu-section pt-4';
             const itemsHTML = data.items.map(item => renderMenuItem(item, false)).join('');
+            
             section.innerHTML = `
                 <div class="section-header py-4">
                     <h2 class="font-bold text-2xl text-moka-dark">${category}</h2>
                     ${data.note ? `<p class="text-moka-gray text-sm mt-1">${data.note}</p>` : ''}
                 </div>
-                <div class="grid grid-cols-1 gap-3 pt-4">${itemsHTML}</div>
+                <!-- PERBAIKAN RESPONSIVITAS ADA DI SINI -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${itemsHTML}</div>
             `;
             menuContent.appendChild(section);
         });
         initObservers();
     }
 
-    function renderSearchResults(results) {
-        searchResultsContainer.innerHTML = `<div class="grid grid-cols-1 gap-3 pt-4">${results.map(item => renderMenuItem(item, true)).join('')}</div>`;
+        function renderSearchResults(results) {
+        // PERBAIKAN RESPONSIVITAS ADA DI SINI
+        searchResultsContainer.innerHTML = `<div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-4">${results.map(item => renderMenuItem(item, true)).join('')}</div>`;
         initItemObservers(searchResultsContainer);
     }
 
